@@ -26,12 +26,16 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    .portada {
+    .pantalla {
       min-height: 100vh;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       padding: 24px;
+    }
+
+    .pantalla.activa {
+      display: flex;
     }
 
     .contenido {
@@ -52,7 +56,12 @@
       margin: 0;
       color: var(--rojo);
       font-size: clamp(2rem, 8vw, 2.8rem);
-      line-height: 1.05;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      color: var(--rojo);
+      font-size: 2rem;
     }
 
     .eslogan {
@@ -62,7 +71,14 @@
       line-height: 1.45;
     }
 
-    .botones {
+    .texto-categorias {
+      margin: 0 0 24px;
+      color: var(--verde);
+      font-size: 1.1rem;
+    }
+
+    .botones,
+    .categorias {
       display: grid;
       gap: 14px;
     }
@@ -79,19 +95,37 @@
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
+      border: none;
       transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
     .boton-principal {
       background: var(--rojo);
       color: var(--blanco);
-      border: 2px solid var(--rojo);
       box-shadow: 0 10px 24px rgba(255, 51, 0, 0.25);
     }
 
     .boton-secundario {
       background: var(--verde);
       color: var(--fondo);
+      border: 2px solid var(--verde);
+    }
+
+    .categoria {
+      background: var(--verde);
+      color: var(--fondo);
+      border: 3px solid transparent;
+    }
+
+    .categoria:hover,
+    .categoria:focus {
+      border-color: var(--rojo);
+    }
+
+    .boton-volver {
+      margin-top: 22px;
+      background: transparent;
+      color: var(--verde);
       border: 2px solid var(--verde);
     }
 
@@ -104,7 +138,6 @@
     .ubicacion {
       margin: 26px 0 0;
       color: var(--verde);
-      font-size: 0.98rem;
     }
 
     .pie {
@@ -115,7 +148,7 @@
     }
 
     @media (max-width: 420px) {
-      .portada {
+      .pantalla {
         padding: 18px;
       }
 
@@ -132,7 +165,9 @@
 </head>
 
 <body>
-  <main class="portada">
+
+  <!-- Pantalla de bienvenida -->
+  <main id="inicio" class="pantalla activa">
     <section class="contenido">
 
       <img
@@ -153,6 +188,7 @@
         <button
           type="button"
           class="boton boton-principal"
+          onclick="mostrarCategorias()"
         >
           🍺 Entrar a la carta
         </button>
@@ -176,5 +212,61 @@
 
     </section>
   </main>
+
+  <!-- Pantalla de categorías -->
+  <section id="menu" class="pantalla">
+    <div class="contenido">
+
+      <h2>Nuestra carta</h2>
+
+      <p class="texto-categorias">
+        ¿Qué deseas disfrutar hoy?
+      </p>
+
+      <div class="categorias">
+
+        <button type="button" class="boton categoria">
+          🍺 Micheladas
+        </button>
+
+        <button type="button" class="boton categoria">
+          🍹 Cócteles granizados
+        </button>
+
+        <button type="button" class="boton categoria">
+          🥭 Mangomanía
+        </button>
+
+        <button type="button" class="boton categoria">
+          🥤 Sodas sin alcohol
+        </button>
+
+      </div>
+
+      <button
+        type="button"
+        class="boton boton-volver"
+        onclick="volverInicio()"
+      >
+        ← Volver al inicio
+      </button>
+
+    </div>
+  </section>
+
+  <script>
+    function mostrarCategorias() {
+      document.getElementById("inicio").classList.remove("activa");
+      document.getElementById("menu").classList.add("activa");
+      window.scrollTo(0, 0);
+    }
+
+    function volverInicio() {
+      document.getElementById("menu").classList.remove("activa");
+      document.getElementById("inicio").classList.add("activa");
+      window.scrollTo(0, 0);
+    }
+  </script>
+
 </body>
 </html>
