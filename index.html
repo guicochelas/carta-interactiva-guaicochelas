@@ -2,12 +2,21 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>GuaicoChelas | Carta Interactiva</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
 
   <link
     href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
@@ -302,7 +311,7 @@
       bottom: 12px;
       padding: 7px 11px;
       border-radius: 20px;
-      background: rgba(1, 26, 30, 0.88);
+      background: rgba(1, 26, 30, 0.9);
       color: var(--verde);
       font-size: 0.85rem;
       font-weight: 700;
@@ -320,23 +329,6 @@
       line-height: 1.3;
       text-align: center;
       border-top: 1px solid rgba(212, 247, 179, 0.15);
-    }
-
-    .galeria-producto {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      padding: 8px;
-      background: rgba(1, 26, 30, 0.8);
-    }
-
-    .galeria-producto .contenedor-imagen-producto {
-      border-radius: 12px;
-    }
-
-    .galeria-producto .imagen-producto {
-      height: 210px;
-      border-radius: 12px;
     }
 
     .informacion-producto {
@@ -457,6 +449,8 @@
 
     .contenedor-modal {
       width: min(100%, 760px);
+      max-height: 94vh;
+      overflow-y: auto;
       padding: 15px;
       background: var(--fondo);
       border: 2px solid var(--verde);
@@ -494,7 +488,7 @@
 
     .imagen-ampliada {
       width: 100%;
-      max-height: 78vh;
+      max-height: 76vh;
       display: block;
       object-fit: contain;
       border-radius: 14px;
@@ -503,7 +497,7 @@
 
     .reproductor-video {
       width: 100%;
-      max-height: 75vh;
+      max-height: 76vh;
       display: block;
       object-fit: contain;
       border-radius: 14px;
@@ -533,14 +527,6 @@
         height: 230px;
       }
 
-      .galeria-producto {
-        grid-template-columns: 1fr;
-      }
-
-      .galeria-producto .imagen-producto {
-        height: 230px;
-      }
-
       .informacion-producto {
         padding: 17px;
       }
@@ -566,6 +552,7 @@
 
 <body>
 
+  <!-- Pantalla de inicio -->
   <main id="inicio" class="pantalla activa">
     <section class="contenido">
 
@@ -592,7 +579,10 @@
           🍺 Entrar a la carta
         </button>
 
-        <a href="#" class="boton boton-secundario">
+        <a
+          href="#"
+          class="boton boton-secundario"
+        >
           📄 Ver carta PDF
         </a>
 
@@ -662,6 +652,7 @@
     </section>
   </main>
 
+  <!-- Menú de categorías -->
   <section id="menu" class="pantalla">
     <div class="contenido">
 
@@ -718,6 +709,7 @@
     </div>
   </section>
 
+  <!-- Micheladas -->
   <section
     id="productos-micheladas"
     class="pantalla pantalla-productos"
@@ -1015,6 +1007,7 @@
     </div>
   </section>
 
+  <!-- Cócteles granizados -->
   <section
     id="productos-cocteles"
     class="pantalla pantalla-productos"
@@ -1334,6 +1327,7 @@
     </div>
   </section>
 
+  <!-- Mangomanía -->
   <section
     id="productos-mangomania"
     class="pantalla pantalla-productos"
@@ -1350,75 +1344,63 @@
 
         <article class="tarjeta-producto">
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Mango biche rayado</h4>
-              <p class="precio-producto">$5.000</p>
+              <h4 class="nombre-producto">
+                Mango biche rayado
+              </h4>
+
+              <p class="precio-producto">
+                $5.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
-              Mango biche rayado, dulce, agridulce o ácido. Lo
-              acompañamos con nuestros dulces y chamoy artesanales.
+              Mango biche rayado, dulce, agridulce o ácido.
+              Lo acompañamos con nuestros dulces y chamoy artesanales.
             </p>
+
           </div>
         </article>
 
+        <!-- Frappe de mango: una sola imagen -->
         <article class="tarjeta-producto">
 
-          <div class="galeria-producto">
-
-            <div
-              class="contenedor-imagen-producto"
-              role="button"
-              tabindex="0"
-              onclick="abrirImagen(
-                'Frape-Mango-Biche.jpg',
-                'Frappe de mango'
-              )"
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Frape-Mango-Biche.jpg',
+              'Frappe de mango'
+            )"
+          >
+            <img
+              src="Frape-Mango-Biche.jpg"
+              alt="Frappe de mango"
+              class="imagen-producto"
+              loading="lazy"
             >
-              <img
-                src="Frape-Mango-Biche.jpg"
-                alt="Frappe de mango"
-                class="imagen-producto"
-                loading="lazy"
-              >
 
-              <span class="indicador-ampliar">
-                🔍 Ver
-              </span>
-            </div>
-
-            <div
-              class="contenedor-imagen-producto"
-              role="button"
-              tabindex="0"
-              onclick="abrirImagen(
-                'Frape-De-Mango.jpg',
-                'Frappe de mango'
-              )"
-            >
-              <img
-                src="Frape-De-Mango.jpg"
-                alt="Frappe de mango"
-                class="imagen-producto"
-                loading="lazy"
-              >
-
-              <span class="indicador-ampliar">
-                🔍 Ver
-              </span>
-            </div>
-
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
           </div>
 
           <p class="aviso-imagen">
-            Imágenes de referencia. La presentación del producto puede variar ligeramente.
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
           </p>
 
           <div class="informacion-producto">
 
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Frappe de mango</h4>
-              <p class="precio-producto">$8.000</p>
+              <h4 class="nombre-producto">
+                Frappe de mango
+              </h4>
+
+              <p class="precio-producto">
+                $8.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
@@ -1429,62 +1411,104 @@
           </div>
         </article>
 
+        <!-- Frappe de maracumango con su video -->
         <article class="tarjeta-producto">
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Frappe de maracumango</h4>
-              <p class="precio-producto">$8.000</p>
+              <h4 class="nombre-producto">
+                Frappe de maracumango
+              </h4>
+
+              <p class="precio-producto">
+                $8.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
               Mezcla tropical de maracuyá y mango biche en un frappe
               helado y lleno de sabor.
             </p>
+
+            <button
+              type="button"
+              class="boton-video"
+              onclick="abrirVideo(
+                'Frape-De-Maracumango.mp4',
+                'Frappe de maracumango',
+                ''
+              )"
+            >
+              ▶ Ver video
+            </button>
+
           </div>
         </article>
 
         <article class="tarjeta-producto">
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Cholado</h4>
-              <p class="precio-producto">$8.000</p>
+              <h4 class="nombre-producto">
+                Cholado
+              </h4>
+
+              <p class="precio-producto">
+                $8.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
               Base de frappe, mango biche rayado, manzana, pera,
               maracuyá y una bola de helado.
             </p>
+
           </div>
         </article>
 
         <article class="tarjeta-producto">
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Soda mango biche</h4>
-              <p class="precio-producto">$6.000</p>
+              <h4 class="nombre-producto">
+                Soda mango biche
+              </h4>
+
+              <p class="precio-producto">
+                $6.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
               Refrescante soda de mango con frappe de mango biche
               artesanal.
             </p>
+
           </div>
         </article>
 
         <article class="tarjeta-producto">
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Tentación tropical</h4>
-              <p class="precio-producto">$8.000</p>
+              <h4 class="nombre-producto">
+                Tentación tropical
+              </h4>
+
+              <p class="precio-producto">
+                $8.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
               Mezcla de mango y maracuyá con un toque de lechera,
               bola de helado y cereza.
             </p>
+
           </div>
         </article>
 
+        <!-- Helados de mango biche -->
         <article class="tarjeta-producto">
 
           <div
@@ -1546,15 +1570,22 @@
 
         <article class="tarjeta-producto">
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">Gomas enchiladas</h4>
-              <p class="precio-producto">$5.000</p>
+              <h4 class="nombre-producto">
+                Gomas enchiladas
+              </h4>
+
+              <p class="precio-producto">
+                $5.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
               Gomas a tu elección con limón, tajín, chamoy y dulce
               de tamarindo.
             </p>
+
           </div>
         </article>
 
@@ -1571,6 +1602,7 @@
     </div>
   </section>
 
+  <!-- Sodas sin alcohol -->
   <section
     id="productos-sodas"
     class="pantalla pantalla-productos"
@@ -1657,6 +1689,7 @@
     </div>
   </section>
 
+  <!-- Modal de imagen -->
   <div
     id="modal-imagen"
     class="modal"
@@ -1698,6 +1731,7 @@
     </div>
   </div>
 
+  <!-- Modal de video -->
   <div
     id="modal-video"
     class="modal"
@@ -1750,17 +1784,25 @@
           pantalla.classList.remove("activa");
         });
 
-      document
-        .getElementById(idPantalla)
-        .classList.add("activa");
+      const pantallaSeleccionada =
+        document.getElementById(idPantalla);
+
+      if (pantallaSeleccionada) {
+        pantallaSeleccionada.classList.add("activa");
+      }
 
       window.scrollTo(0, 0);
     }
 
     function abrirImagen(archivo, titulo) {
-      const modal = document.getElementById("modal-imagen");
-      const imagen = document.getElementById("imagen-ampliada");
-      const tituloImagen = document.getElementById("titulo-imagen");
+      const modal =
+        document.getElementById("modal-imagen");
+
+      const imagen =
+        document.getElementById("imagen-ampliada");
+
+      const tituloImagen =
+        document.getElementById("titulo-imagen");
 
       imagen.src = archivo;
       imagen.alt = titulo;
@@ -1771,8 +1813,11 @@
     }
 
     function cerrarImagen() {
-      const modal = document.getElementById("modal-imagen");
-      const imagen = document.getElementById("imagen-ampliada");
+      const modal =
+        document.getElementById("modal-imagen");
+
+      const imagen =
+        document.getElementById("imagen-ampliada");
 
       if (!modal || !imagen) {
         return;
@@ -1785,34 +1830,48 @@
     }
 
     function abrirVideo(archivo, titulo, portada) {
-      const modal = document.getElementById("modal-video");
-      const reproductor = document.getElementById("reproductor-video");
-      const tituloVideo = document.getElementById("titulo-video");
+      const modal =
+        document.getElementById("modal-video");
+
+      const reproductor =
+        document.getElementById("reproductor-video");
+
+      const tituloVideo =
+        document.getElementById("titulo-video");
 
       reproductor.src = archivo;
-      reproductor.poster = portada;
       tituloVideo.textContent = titulo;
+
+      if (portada) {
+        reproductor.poster = portada;
+      } else {
+        reproductor.removeAttribute("poster");
+      }
 
       modal.classList.add("activo");
       document.body.classList.add("modal-abierto");
 
       reproductor.load();
 
-      const intentoReproduccion = reproductor.play();
+      const intentoReproduccion =
+        reproductor.play();
 
       if (intentoReproduccion !== undefined) {
         intentoReproduccion.catch(function() {
           /*
-            Si el navegador bloquea la reproducción automática,
-            el usuario puede iniciar el video desde los controles.
+            Algunos navegadores pueden bloquear la reproducción
+            automática. Los controles permanecen disponibles.
           */
         });
       }
     }
 
     function cerrarVideo() {
-      const modal = document.getElementById("modal-video");
-      const reproductor = document.getElementById("reproductor-video");
+      const modal =
+        document.getElementById("modal-video");
+
+      const reproductor =
+        document.getElementById("reproductor-video");
 
       if (!modal || !reproductor) {
         return;
@@ -1844,25 +1903,32 @@
     }
 
     function actualizarEstadoModal() {
-      const imagenAbierta = document
-        .getElementById("modal-imagen")
-        .classList.contains("activo");
+      const modalImagen =
+        document.getElementById("modal-imagen");
 
-      const videoAbierto = document
-        .getElementById("modal-video")
-        .classList.contains("activo");
+      const modalVideo =
+        document.getElementById("modal-video");
+
+      const imagenAbierta =
+        modalImagen.classList.contains("activo");
+
+      const videoAbierto =
+        modalVideo.classList.contains("activo");
 
       if (!imagenAbierta && !videoAbierto) {
         document.body.classList.remove("modal-abierto");
       }
     }
 
-    document.addEventListener("keydown", function(evento) {
-      if (evento.key === "Escape") {
-        cerrarImagen();
-        cerrarVideo();
+    document.addEventListener(
+      "keydown",
+      function(evento) {
+        if (evento.key === "Escape") {
+          cerrarImagen();
+          cerrarVideo();
+        }
       }
-    });
+    );
   </script>
 
 </body>
