@@ -38,7 +38,7 @@
       font-family: "Baloo 2", Arial, sans-serif;
     }
 
-    body.video-abierto {
+    body.modal-abierto {
       overflow: hidden;
     }
 
@@ -278,12 +278,38 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
     }
 
+    .contenedor-imagen-producto {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--fondo);
+    }
+
     .imagen-producto {
       width: 100%;
       height: 260px;
       display: block;
       object-fit: cover;
-      background: var(--fondo);
+      transition: transform 0.3s ease;
+    }
+
+    .contenedor-imagen-producto:hover .imagen-producto,
+    .contenedor-imagen-producto:focus .imagen-producto {
+      transform: scale(1.03);
+    }
+
+    .indicador-ampliar {
+      position: absolute;
+      right: 12px;
+      bottom: 12px;
+      padding: 7px 11px;
+      border-radius: 20px;
+      background: rgba(1, 26, 30, 0.88);
+      color: var(--verde);
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid var(--verde);
+      pointer-events: none;
     }
 
     .informacion-producto {
@@ -387,9 +413,9 @@
       opacity: 0.95;
     }
 
-    /* Reproductor de video */
+    /* Ventanas emergentes */
 
-    .modal-video {
+    .modal {
       position: fixed;
       inset: 0;
       z-index: 1000;
@@ -397,23 +423,24 @@
       align-items: center;
       justify-content: center;
       padding: 18px;
-      background: rgba(0, 0, 0, 0.88);
+      background: rgba(0, 0, 0, 0.9);
     }
 
-    .modal-video.activo {
+    .modal.activo {
       display: flex;
     }
 
-    .contenedor-video {
-      width: min(100%, 720px);
-      padding: 16px;
+    .contenedor-modal {
+      position: relative;
+      width: min(100%, 760px);
+      padding: 15px;
       background: var(--fondo);
       border: 2px solid var(--verde);
       border-radius: 20px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
     }
 
-    .encabezado-video {
+    .encabezado-modal {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -421,14 +448,14 @@
       margin-bottom: 12px;
     }
 
-    .titulo-video {
+    .titulo-modal {
       margin: 0;
       color: var(--verde);
       font-size: 1.2rem;
       font-weight: 800;
     }
 
-    .cerrar-video {
+    .cerrar-modal {
       width: 42px;
       height: 42px;
       flex-shrink: 0;
@@ -441,10 +468,20 @@
       cursor: pointer;
     }
 
+    .imagen-ampliada {
+      width: 100%;
+      max-height: 78vh;
+      display: block;
+      object-fit: contain;
+      border-radius: 14px;
+      background: #000000;
+    }
+
     .reproductor-video {
       width: 100%;
       max-height: 75vh;
       display: block;
+      object-fit: contain;
       border-radius: 14px;
       background: #000000;
     }
@@ -488,8 +525,8 @@
         grid-template-columns: 1fr;
       }
 
-      .contenedor-video {
-        padding: 12px;
+      .contenedor-modal {
+        padding: 11px;
       }
     }
   </style>
@@ -524,10 +561,7 @@
           🍺 Entrar a la carta
         </button>
 
-        <a
-          href="#"
-          class="boton boton-secundario"
-        >
+        <a href="#" class="boton boton-secundario">
           📄 Ver carta PDF
         </a>
 
@@ -675,12 +709,31 @@
 
         <article class="tarjeta-producto">
 
-          <img
-            src="michelada-granizada.jpg"
-            alt="Michelada granizada de GuaicoChelas"
-            class="imagen-producto"
-            loading="lazy"
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'michelada-granizada.jpg',
+              'Michelada granizada'
+            )"
+            onkeydown="abrirImagenConTeclado(
+              event,
+              'michelada-granizada.jpg',
+              'Michelada granizada'
+            )"
           >
+            <img
+              src="michelada-granizada.jpg"
+              alt="Michelada granizada de GuaicoChelas"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
 
           <div class="informacion-producto">
 
@@ -745,12 +798,31 @@
 
         <article class="tarjeta-producto">
 
-          <img
-            src="michelada-green.jpg"
-            alt="Michelada Green de GuaicoChelas"
-            class="imagen-producto"
-            loading="lazy"
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'michelada-green.jpg',
+              'Michelada Green'
+            )"
+            onkeydown="abrirImagenConTeclado(
+              event,
+              'michelada-green.jpg',
+              'Michelada Green'
+            )"
           >
+            <img
+              src="michelada-green.jpg"
+              alt="Michelada Green de GuaicoChelas"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
 
           <div class="informacion-producto">
 
@@ -837,12 +909,31 @@
 
         <article class="tarjeta-producto">
 
-          <img
-            src="gomichela.jpg"
-            alt="Gomichela de GuaicoChelas"
-            class="imagen-producto"
-            loading="lazy"
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'gomichela.jpg',
+              'Gomichela'
+            )"
+            onkeydown="abrirImagenConTeclado(
+              event,
+              'gomichela.jpg',
+              'Gomichela'
+            )"
           >
+            <img
+              src="gomichela.jpg"
+              alt="Gomichela de GuaicoChelas"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
 
           <div class="informacion-producto">
 
@@ -873,7 +964,7 @@
               </h4>
 
               <p class="precio-producto">
-                $12.000
+                $13.000
               </p>
             </div>
 
@@ -1304,26 +1395,64 @@
     </div>
   </section>
 
-  <!-- Ventana del video -->
+  <!-- Ventana para ampliar imágenes -->
+  <div
+    id="modal-imagen"
+    class="modal"
+    onclick="cerrarModalAlTocarFondo(event, 'modal-imagen')"
+  >
+    <div class="contenedor-modal">
+
+      <div class="encabezado-modal">
+
+        <h3
+          id="titulo-imagen"
+          class="titulo-modal"
+        >
+          Producto
+        </h3>
+
+        <button
+          type="button"
+          class="cerrar-modal"
+          onclick="cerrarImagen()"
+          aria-label="Cerrar imagen"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <img
+        id="imagen-ampliada"
+        class="imagen-ampliada"
+        src=""
+        alt=""
+      >
+
+    </div>
+  </div>
+
+  <!-- Ventana para reproducir videos -->
   <div
     id="modal-video"
-    class="modal-video"
-    onclick="cerrarVideoAlTocarFondo(event)"
+    class="modal"
+    onclick="cerrarModalAlTocarFondo(event, 'modal-video')"
   >
-    <div class="contenedor-video">
+    <div class="contenedor-modal">
 
-      <div class="encabezado-video">
+      <div class="encabezado-modal">
 
         <h3
           id="titulo-video"
-          class="titulo-video"
+          class="titulo-modal"
         >
           Video del producto
         </h3>
 
         <button
           type="button"
-          class="cerrar-video"
+          class="cerrar-modal"
           onclick="cerrarVideo()"
           aria-label="Cerrar video"
         >
@@ -1338,6 +1467,7 @@
         controls
         playsinline
         preload="metadata"
+        onended="cerrarVideo()"
       >
         Tu navegador no puede reproducir este video.
       </video>
@@ -1347,6 +1477,7 @@
 
   <script>
     function mostrarPantalla(idPantalla) {
+      cerrarImagen();
       cerrarVideo();
 
       document
@@ -1362,6 +1493,40 @@
       window.scrollTo(0, 0);
     }
 
+    function abrirImagen(archivo, titulo) {
+      const modal = document.getElementById("modal-imagen");
+      const imagen = document.getElementById("imagen-ampliada");
+      const tituloImagen = document.getElementById("titulo-imagen");
+
+      imagen.src = archivo;
+      imagen.alt = titulo;
+      tituloImagen.textContent = titulo;
+
+      modal.classList.add("activo");
+      document.body.classList.add("modal-abierto");
+    }
+
+    function abrirImagenConTeclado(evento, archivo, titulo) {
+      if (evento.key === "Enter" || evento.key === " ") {
+        evento.preventDefault();
+        abrirImagen(archivo, titulo);
+      }
+    }
+
+    function cerrarImagen() {
+      const modal = document.getElementById("modal-imagen");
+      const imagen = document.getElementById("imagen-ampliada");
+
+      if (!modal || !imagen) {
+        return;
+      }
+
+      modal.classList.remove("activo");
+      imagen.removeAttribute("src");
+
+      actualizarEstadoModal();
+    }
+
     function abrirVideo(archivo, titulo, portada) {
       const modal = document.getElementById("modal-video");
       const reproductor = document.getElementById("reproductor-video");
@@ -1372,9 +1537,20 @@
       tituloVideo.textContent = titulo;
 
       modal.classList.add("activo");
-      document.body.classList.add("video-abierto");
+      document.body.classList.add("modal-abierto");
 
       reproductor.load();
+
+      const intentoReproduccion = reproductor.play();
+
+      if (intentoReproduccion !== undefined) {
+        intentoReproduccion.catch(function() {
+          /*
+            Algunos navegadores pueden bloquear la reproducción automática.
+            En ese caso, el usuario puede pulsar el botón de reproducción.
+          */
+        });
+      }
     }
 
     function cerrarVideo() {
@@ -1386,22 +1562,47 @@
       }
 
       reproductor.pause();
+      reproductor.currentTime = 0;
       reproductor.removeAttribute("src");
       reproductor.removeAttribute("poster");
       reproductor.load();
 
       modal.classList.remove("activo");
-      document.body.classList.remove("video-abierto");
+
+      actualizarEstadoModal();
     }
 
-    function cerrarVideoAlTocarFondo(evento) {
-      if (evento.target.id === "modal-video") {
+    function cerrarModalAlTocarFondo(evento, idModal) {
+      if (evento.target.id !== idModal) {
+        return;
+      }
+
+      if (idModal === "modal-imagen") {
+        cerrarImagen();
+      }
+
+      if (idModal === "modal-video") {
         cerrarVideo();
+      }
+    }
+
+    function actualizarEstadoModal() {
+      const imagenAbierta = document
+        .getElementById("modal-imagen")
+        .classList.contains("activo");
+
+      const videoAbierto = document
+        .getElementById("modal-video")
+        .classList.contains("activo");
+
+      if (!imagenAbierta && !videoAbierto) {
+        document.body.classList.remove("modal-abierto");
       }
     }
 
     document.addEventListener("keydown", function(evento) {
       if (evento.key === "Escape") {
+        cerrarImagen();
         cerrarVideo();
       }
     });
