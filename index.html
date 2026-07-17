@@ -225,19 +225,32 @@
 
       <div class="categorias">
 
-        <button type="button" class="boton categoria">
+        <button
+          type="button"
+          class="boton categoria"
+          onclick="mostrarMicheladas()"
+        >
           🍺 Micheladas
         </button>
 
-        <button type="button" class="boton categoria">
+        <button
+          type="button"
+          class="boton categoria"
+        >
           🍹 Cócteles granizados
         </button>
 
-        <button type="button" class="boton categoria">
+        <button
+          type="button"
+          class="boton categoria"
+        >
           🥭 Mangomanía
         </button>
 
-        <button type="button" class="boton categoria">
+        <button
+          type="button"
+          class="boton categoria"
+        >
           🥤 Sodas sin alcohol
         </button>
 
@@ -254,16 +267,55 @@
     </div>
   </section>
 
+  <!-- Pantalla de Micheladas -->
+  <section id="productos-micheladas" class="pantalla">
+    <div class="contenido">
+
+      <h2>Micheladas</h2>
+
+      <p class="texto-categorias">
+        Elige tu experiencia favorita
+      </p>
+
+      <button
+        type="button"
+        class="boton boton-volver"
+        onclick="volverCategorias()"
+      >
+        ← Volver a categorías
+      </button>
+
+    </div>
+  </section>
+
   <script>
+    function ocultarPantallas() {
+      document.querySelectorAll(".pantalla").forEach(function(pantalla) {
+        pantalla.classList.remove("activa");
+      });
+    }
+
     function mostrarCategorias() {
-      document.getElementById("inicio").classList.remove("activa");
+      ocultarPantallas();
       document.getElementById("menu").classList.add("activa");
       window.scrollTo(0, 0);
     }
 
     function volverInicio() {
-      document.getElementById("menu").classList.remove("activa");
+      ocultarPantallas();
       document.getElementById("inicio").classList.add("activa");
+      window.scrollTo(0, 0);
+    }
+
+    function mostrarMicheladas() {
+      ocultarPantallas();
+      document.getElementById("productos-micheladas").classList.add("activa");
+      window.scrollTo(0, 0);
+    }
+
+    function volverCategorias() {
+      ocultarPantallas();
+      document.getElementById("menu").classList.add("activa");
       window.scrollTo(0, 0);
     }
   </script>
