@@ -140,8 +140,53 @@
       color: var(--verde);
     }
 
+    .redes-sociales {
+      margin-top: 24px;
+    }
+
+    .titulo-redes {
+      margin: 0 0 12px;
+      color: var(--blanco);
+      font-size: 0.92rem;
+      opacity: 0.8;
+    }
+
+    .iconos-redes {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .red-social {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--verde);
+      color: var(--fondo);
+      font-size: 1.35rem;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid transparent;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .red-social:hover,
+    .red-social:focus {
+      transform: translateY(-3px);
+      background: var(--rojo);
+      color: var(--blanco);
+      border-color: var(--rojo);
+    }
+
     .pie {
-      margin-top: 12px;
+      margin-top: 18px;
       color: var(--blanco);
       opacity: 0.72;
       font-size: 0.88rem;
@@ -159,6 +204,11 @@
       .boton {
         min-height: 56px;
         font-size: 1rem;
+      }
+
+      .red-social {
+        width: 46px;
+        height: 46px;
       }
     }
   </style>
@@ -205,6 +255,52 @@
       <p class="ubicacion">
         📍 Sandoná, Nariño
       </p>
+
+      <!-- Redes sociales -->
+      <div class="redes-sociales">
+
+        <p class="titulo-redes">
+          Síguenos en nuestras redes
+        </p>
+
+        <div class="iconos-redes">
+
+          <a
+            href="https://www.instagram.com/guaicochelas?igsh=MWczNmxreTkzdXB0dw=="
+            class="red-social"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram de GuaicoChelas"
+            title="Instagram"
+          >
+            IG
+          </a>
+
+          <a
+            href="https://www.facebook.com/share/17zmut9BG1/"
+            class="red-social"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook de GuaicoChelas"
+            title="Facebook"
+          >
+            f
+          </a>
+
+          <a
+            href="https://vt.tiktok.com/ZSXfL4mhr/"
+            class="red-social"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok de GuaicoChelas"
+            title="TikTok"
+          >
+            ♪
+          </a>
+
+        </div>
+
+      </div>
 
       <p class="pie">
         Carta interactiva oficial
@@ -309,7 +405,10 @@
 
     function mostrarMicheladas() {
       ocultarPantallas();
-      document.getElementById("productos-micheladas").classList.add("activa");
+      document
+        .getElementById("productos-micheladas")
+        .classList.add("activa");
+
       window.scrollTo(0, 0);
     }
 
