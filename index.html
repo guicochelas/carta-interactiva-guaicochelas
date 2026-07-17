@@ -239,8 +239,6 @@
       font-size: 0.88rem;
     }
 
-    /* Productos */
-
     .titulo-seccion {
       margin: 30px 0 16px;
       padding-bottom: 9px;
@@ -310,6 +308,35 @@
       font-weight: 700;
       border: 1px solid var(--verde);
       pointer-events: none;
+    }
+
+    .aviso-imagen {
+      margin: 0;
+      padding: 8px 12px;
+      background: rgba(212, 247, 179, 0.06);
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.76rem;
+      font-weight: 500;
+      line-height: 1.3;
+      text-align: center;
+      border-top: 1px solid rgba(212, 247, 179, 0.15);
+    }
+
+    .galeria-producto {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      padding: 8px;
+      background: rgba(1, 26, 30, 0.8);
+    }
+
+    .galeria-producto .contenedor-imagen-producto {
+      border-radius: 12px;
+    }
+
+    .galeria-producto .imagen-producto {
+      height: 210px;
+      border-radius: 12px;
     }
 
     .informacion-producto {
@@ -413,8 +440,6 @@
       opacity: 0.95;
     }
 
-    /* Ventanas emergentes */
-
     .modal {
       position: fixed;
       inset: 0;
@@ -431,7 +456,6 @@
     }
 
     .contenedor-modal {
-      position: relative;
       width: min(100%, 760px);
       padding: 15px;
       background: var(--fondo);
@@ -509,6 +533,14 @@
         height: 230px;
       }
 
+      .galeria-producto {
+        grid-template-columns: 1fr;
+      }
+
+      .galeria-producto .imagen-producto {
+        height: 230px;
+      }
+
       .informacion-producto {
         padding: 17px;
       }
@@ -534,7 +566,6 @@
 
 <body>
 
-  <!-- Inicio -->
   <main id="inicio" class="pantalla activa">
     <section class="contenido">
 
@@ -631,7 +662,6 @@
     </section>
   </main>
 
-  <!-- Categorías -->
   <section id="menu" class="pantalla">
     <div class="contenido">
 
@@ -688,7 +718,6 @@
     </div>
   </section>
 
-  <!-- Micheladas -->
   <section
     id="productos-micheladas"
     class="pantalla pantalla-productos"
@@ -717,11 +746,6 @@
               'michelada-granizada.jpg',
               'Michelada granizada'
             )"
-            onkeydown="abrirImagenConTeclado(
-              event,
-              'michelada-granizada.jpg',
-              'Michelada granizada'
-            )"
           >
             <img
               src="michelada-granizada.jpg"
@@ -734,6 +758,10 @@
               🔍 Ver completa
             </span>
           </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
 
           <div class="informacion-producto">
 
@@ -806,15 +834,10 @@
               'michelada-green.jpg',
               'Michelada Green'
             )"
-            onkeydown="abrirImagenConTeclado(
-              event,
-              'michelada-green.jpg',
-              'Michelada Green'
-            )"
           >
             <img
               src="michelada-green.jpg"
-              alt="Michelada Green de GuaicoChelas"
+              alt="Michelada Green"
               class="imagen-producto"
               loading="lazy"
             >
@@ -823,6 +846,10 @@
               🔍 Ver completa
             </span>
           </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
 
           <div class="informacion-producto">
 
@@ -917,15 +944,10 @@
               'gomichela.jpg',
               'Gomichela'
             )"
-            onkeydown="abrirImagenConTeclado(
-              event,
-              'gomichela.jpg',
-              'Gomichela'
-            )"
           >
             <img
               src="gomichela.jpg"
-              alt="Gomichela de GuaicoChelas"
+              alt="Gomichela"
               class="imagen-producto"
               loading="lazy"
             >
@@ -934,6 +956,10 @@
               🔍 Ver completa
             </span>
           </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
 
           <div class="informacion-producto">
 
@@ -964,7 +990,7 @@
               </h4>
 
               <p class="precio-producto">
-                $13.000
+                $12.000
               </p>
             </div>
 
@@ -989,7 +1015,6 @@
     </div>
   </section>
 
-  <!-- Cócteles granizados -->
   <section
     id="productos-cocteles"
     class="pantalla pantalla-productos"
@@ -1036,12 +1061,75 @@
         </article>
 
         <article class="tarjeta-producto">
+
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Coctel-Granizado-Mango-Biche.png',
+              'Cóctel granizado Mango Biche'
+            )"
+          >
+            <img
+              src="Coctel-Granizado-Mango-Biche.png"
+              alt="Cóctel granizado Mango Biche"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
           <div class="informacion-producto">
             <div class="encabezado-producto">
               <h4 class="nombre-producto">Mango Biche</h4>
               <p class="precio-producto">$15.000</p>
             </div>
           </div>
+
+        </article>
+
+        <article class="tarjeta-producto">
+
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Coctel-Granizado-Manzana-Verde.png',
+              'Cóctel granizado Manzana Verde'
+            )"
+          >
+            <img
+              src="Coctel-Granizado-Manzana-Verde.png"
+              alt="Cóctel granizado Manzana Verde"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Manzana Verde</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
+          </div>
+
         </article>
 
         <article class="tarjeta-producto">
@@ -1090,12 +1178,39 @@
         </article>
 
         <article class="tarjeta-producto">
+
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Coctel-Granizado-Smirnoff-Lulo.png',
+              'Cóctel granizado Smirnoff Lulo'
+            )"
+          >
+            <img
+              src="Coctel-Granizado-Smirnoff-Lulo.png"
+              alt="Cóctel granizado Smirnoff Lulo"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
           <div class="informacion-producto">
             <div class="encabezado-producto">
               <h4 class="nombre-producto">Smirnoff Lulo</h4>
               <p class="precio-producto">$15.000</p>
             </div>
           </div>
+
         </article>
 
         <article class="tarjeta-producto">
@@ -1117,21 +1232,75 @@
         </article>
 
         <article class="tarjeta-producto">
+
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Coctel-Granizado-Piña-Colada.jpg',
+              'Piña Colada'
+            )"
+          >
+            <img
+              src="Coctel-Granizado-Piña-Colada.jpg"
+              alt="Cóctel granizado Piña Colada"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
           <div class="informacion-producto">
             <div class="encabezado-producto">
               <h4 class="nombre-producto">Piña Colada</h4>
               <p class="precio-producto">$15.000</p>
             </div>
           </div>
+
         </article>
 
         <article class="tarjeta-producto">
+
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Coctel-Granizado-Baileys-Whisky.png',
+              'Baileys Whisky'
+            )"
+          >
+            <img
+              src="Coctel-Granizado-Baileys-Whisky.png"
+              alt="Cóctel granizado Baileys Whisky"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
           <div class="informacion-producto">
             <div class="encabezado-producto">
               <h4 class="nombre-producto">Baileys Whisky</h4>
               <p class="precio-producto">$15.000</p>
             </div>
           </div>
+
         </article>
 
         <article class="tarjeta-producto">
@@ -1165,7 +1334,6 @@
     </div>
   </section>
 
-  <!-- Mangomanía -->
   <section
     id="productos-mangomania"
     class="pantalla pantalla-productos"
@@ -1195,7 +1363,59 @@
         </article>
 
         <article class="tarjeta-producto">
+
+          <div class="galeria-producto">
+
+            <div
+              class="contenedor-imagen-producto"
+              role="button"
+              tabindex="0"
+              onclick="abrirImagen(
+                'Frape-Mango-Biche.jpg',
+                'Frappe de mango'
+              )"
+            >
+              <img
+                src="Frape-Mango-Biche.jpg"
+                alt="Frappe de mango"
+                class="imagen-producto"
+                loading="lazy"
+              >
+
+              <span class="indicador-ampliar">
+                🔍 Ver
+              </span>
+            </div>
+
+            <div
+              class="contenedor-imagen-producto"
+              role="button"
+              tabindex="0"
+              onclick="abrirImagen(
+                'Frape-De-Mango.jpg',
+                'Frappe de mango'
+              )"
+            >
+              <img
+                src="Frape-De-Mango.jpg"
+                alt="Frappe de mango"
+                class="imagen-producto"
+                loading="lazy"
+              >
+
+              <span class="indicador-ampliar">
+                🔍 Ver
+              </span>
+            </div>
+
+          </div>
+
+          <p class="aviso-imagen">
+            Imágenes de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
               <h4 class="nombre-producto">Frappe de mango</h4>
               <p class="precio-producto">$8.000</p>
@@ -1205,6 +1425,7 @@
               Refrescante frappe de mango biche, preparado con mango
               verde y servido bien frío.
             </p>
+
           </div>
         </article>
 
@@ -1265,19 +1486,61 @@
         </article>
 
         <article class="tarjeta-producto">
+
+          <div
+            class="contenedor-imagen-producto"
+            role="button"
+            tabindex="0"
+            onclick="abrirImagen(
+              'Helados-De-Mango-Biche.jpg',
+              'Helados de mango biche'
+            )"
+          >
+            <img
+              src="Helados-De-Mango-Biche.jpg"
+              alt="Helados de mango biche"
+              class="imagen-producto"
+              loading="lazy"
+            >
+
+            <span class="indicador-ampliar">
+              🔍 Ver completa
+            </span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
           <div class="informacion-producto">
+
             <div class="encabezado-producto">
               <h4 class="nombre-producto">
                 Helados de mango biche
               </h4>
 
-              <p class="precio-producto">$3.000</p>
+              <p class="precio-producto">
+                $3.000
+              </p>
             </div>
 
             <p class="descripcion-producto">
               Helados artesanales de mango biche con equilibrio entre
               lo ácido y lo dulce.
             </p>
+
+            <button
+              type="button"
+              class="boton-video"
+              onclick="abrirVideo(
+                'Helado-De-Mango-Biche.mp4',
+                'Helados de mango biche',
+                'Helados-De-Mango-Biche.jpg'
+              )"
+            >
+              ▶ Ver video
+            </button>
+
           </div>
         </article>
 
@@ -1308,7 +1571,6 @@
     </div>
   </section>
 
-  <!-- Sodas sin alcohol -->
   <section
     id="productos-sodas"
     class="pantalla pantalla-productos"
@@ -1395,7 +1657,6 @@
     </div>
   </section>
 
-  <!-- Ventana para ampliar imágenes -->
   <div
     id="modal-imagen"
     class="modal"
@@ -1430,10 +1691,13 @@
         alt=""
       >
 
+      <p class="aviso-imagen">
+        Imagen de referencia. La presentación del producto puede variar ligeramente.
+      </p>
+
     </div>
   </div>
 
-  <!-- Ventana para reproducir videos -->
   <div
     id="modal-video"
     class="modal"
@@ -1506,13 +1770,6 @@
       document.body.classList.add("modal-abierto");
     }
 
-    function abrirImagenConTeclado(evento, archivo, titulo) {
-      if (evento.key === "Enter" || evento.key === " ") {
-        evento.preventDefault();
-        abrirImagen(archivo, titulo);
-      }
-    }
-
     function cerrarImagen() {
       const modal = document.getElementById("modal-imagen");
       const imagen = document.getElementById("imagen-ampliada");
@@ -1546,8 +1803,8 @@
       if (intentoReproduccion !== undefined) {
         intentoReproduccion.catch(function() {
           /*
-            Algunos navegadores pueden bloquear la reproducción automática.
-            En ese caso, el usuario puede pulsar el botón de reproducción.
+            Si el navegador bloquea la reproducción automática,
+            el usuario puede iniciar el video desde los controles.
           */
         });
       }
