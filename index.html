@@ -7,6 +7,13 @@
   <title>GuaicoChelas | Carta Interactiva</title>
 
   <style>
+    :root {
+      --fondo: #011A1E;
+      --rojo: #FF3300;
+      --verde: #D4F7B3;
+      --blanco: #FFFFFF;
+    }
+
     * {
       box-sizing: border-box;
     }
@@ -14,56 +21,160 @@
     body {
       margin: 0;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #011A1E;
-      color: #FFFFFF;
-      font-family: Arial, sans-serif;
-      text-align: center;
+      background: var(--fondo);
+      color: var(--blanco);
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .portada {
-      width: min(90%, 430px);
-      padding: 30px 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .contenido {
+      width: min(100%, 440px);
+      text-align: center;
     }
 
     .logo {
       width: 230px;
-      max-width: 80%;
-      margin-bottom: 20px;
+      max-width: 78%;
+      display: block;
+      margin: 0 auto 18px;
       border-radius: 50%;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
     }
 
     h1 {
-      margin: 0 0 12px;
-      color: #FF3300;
-      font-size: 2.4rem;
+      margin: 0;
+      color: var(--rojo);
+      font-size: clamp(2rem, 8vw, 2.8rem);
+      line-height: 1.05;
     }
 
     .eslogan {
-      margin: 0;
-      color: #D4F7B3;
-      font-size: 1.2rem;
-      line-height: 1.5;
+      margin: 14px 0 30px;
+      color: var(--verde);
+      font-size: 1.22rem;
+      line-height: 1.45;
+    }
+
+    .botones {
+      display: grid;
+      gap: 14px;
+    }
+
+    .boton {
+      width: 100%;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 20px;
+      border-radius: 16px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .boton-principal {
+      background: var(--rojo);
+      color: var(--blanco);
+      border: 2px solid var(--rojo);
+      box-shadow: 0 10px 24px rgba(255, 51, 0, 0.25);
+    }
+
+    .boton-secundario {
+      background: var(--verde);
+      color: var(--fondo);
+      border: 2px solid var(--verde);
+    }
+
+    .boton:hover,
+    .boton:focus {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    .ubicacion {
+      margin: 26px 0 0;
+      color: var(--verde);
+      font-size: 0.98rem;
+    }
+
+    .pie {
+      margin-top: 12px;
+      color: var(--blanco);
+      opacity: 0.72;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 420px) {
+      .portada {
+        padding: 18px;
+      }
+
+      .logo {
+        width: 205px;
+      }
+
+      .boton {
+        min-height: 56px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 
 <body>
   <main class="portada">
-    <img
-      src="logo-guaicochelas.jpg"
-      alt="Logo de GuaicoChelas"
-      class="logo"
-    >
+    <section class="contenido">
 
-    <h1>GuaicoChelas</h1>
+      <img
+        src="logo-guaicochelas.jpg"
+        alt="Logo oficial de GuaicoChelas"
+        class="logo"
+      >
 
-    <p class="eslogan">
-      Más que una bebida,<br>
-      una experiencia.
-    </p>
+      <h1>GuaicoChelas</h1>
+
+      <p class="eslogan">
+        Más que una bebida,<br>
+        una experiencia.
+      </p>
+
+      <div class="botones">
+
+        <button
+          type="button"
+          class="boton boton-principal"
+        >
+          🍺 Entrar a la carta
+        </button>
+
+        <a
+          href="#"
+          class="boton boton-secundario"
+        >
+          📄 Ver carta PDF
+        </a>
+
+      </div>
+
+      <p class="ubicacion">
+        📍 Sandoná, Nariño
+      </p>
+
+      <p class="pie">
+        Carta interactiva oficial
+      </p>
+
+    </section>
   </main>
 </body>
 </html>
