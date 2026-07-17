@@ -6,7 +6,6 @@
 
   <title>GuaicoChelas | Carta Interactiva</title>
 
-  <!-- Tipografía principal -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -37,6 +36,10 @@
       background: var(--fondo);
       color: var(--blanco);
       font-family: "Baloo 2", Arial, sans-serif;
+    }
+
+    body.video-abierto {
+      overflow: hidden;
     }
 
     button,
@@ -267,12 +270,24 @@
     }
 
     .tarjeta-producto {
-      padding: 20px;
+      overflow: hidden;
       text-align: left;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(212, 247, 179, 0.24);
       border-radius: 18px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    .imagen-producto {
+      width: 100%;
+      height: 260px;
+      display: block;
+      object-fit: cover;
+      background: var(--fondo);
+    }
+
+    .informacion-producto {
+      padding: 20px;
     }
 
     .encabezado-producto {
@@ -348,6 +363,92 @@
       color: var(--rojo);
     }
 
+    .boton-video {
+      width: 100%;
+      min-height: 50px;
+      margin-top: 18px;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 14px;
+      background: var(--rojo);
+      color: var(--blanco);
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 51, 0, 0.24);
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .boton-video:hover,
+    .boton-video:focus {
+      transform: translateY(-2px);
+      opacity: 0.95;
+    }
+
+    /* Reproductor de video */
+
+    .modal-video {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.88);
+    }
+
+    .modal-video.activo {
+      display: flex;
+    }
+
+    .contenedor-video {
+      width: min(100%, 720px);
+      padding: 16px;
+      background: var(--fondo);
+      border: 2px solid var(--verde);
+      border-radius: 20px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55);
+    }
+
+    .encabezado-video {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 12px;
+    }
+
+    .titulo-video {
+      margin: 0;
+      color: var(--verde);
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .cerrar-video {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--rojo);
+      color: var(--blanco);
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .reproductor-video {
+      width: 100%;
+      max-height: 75vh;
+      display: block;
+      border-radius: 14px;
+      background: #000000;
+    }
+
     @media (max-width: 420px) {
       .pantalla {
         padding: 18px;
@@ -367,7 +468,11 @@
         height: 50px;
       }
 
-      .tarjeta-producto {
+      .imagen-producto {
+        height: 230px;
+      }
+
+      .informacion-producto {
         padding: 17px;
       }
 
@@ -381,6 +486,10 @@
 
       .lista-sabores {
         grid-template-columns: 1fr;
+      }
+
+      .contenedor-video {
+        padding: 12px;
       }
     }
   </style>
@@ -566,54 +675,64 @@
 
         <article class="tarjeta-producto">
 
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">
-              Michelada granizada
-            </h4>
-          </div>
+          <img
+            src="michelada-granizada.jpg"
+            alt="Michelada granizada de GuaicoChelas"
+            class="imagen-producto"
+            loading="lazy"
+          >
 
-          <p class="descripcion-producto">
-            Escarchado, zumo de limón, tajín, brocheta de gomas,
-            perlas explosivas, cerveza de tu elección y mango biche
-            en tiras.
-          </p>
+          <div class="informacion-producto">
 
-          <div class="sabores">
-
-            <strong>Sabores disponibles:</strong>
-
-            <ul class="lista-sabores">
-              <li>Maracuyá</li>
-              <li>Bon Bon Bum</li>
-              <li>Bon Bon Bum mango biche</li>
-              <li>Manzana verde</li>
-              <li>Blueberry</li>
-              <li>Cereza</li>
-              <li>Mango biche</li>
-              <li>Frutos rojos</li>
-              <li>Sandía</li>
-              <li>Cannabis</li>
-              <li>Tussi</li>
-              <li>Smirnoff cereza</li>
-              <li>Smirnoff lulo</li>
-            </ul>
-
-          </div>
-
-          <div class="opciones-precio">
-
-            <div class="opcion-precio">
-              <span>Con Corona</span>
-              <strong>$16.000</strong>
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Michelada granizada
+              </h4>
             </div>
 
-            <div class="opcion-precio">
-              <span>Con otra cerveza</span>
-              <strong>$15.000</strong>
+            <p class="descripcion-producto">
+              Escarchado, zumo de limón, tajín, brocheta de gomas,
+              perlas explosivas, cerveza de tu elección y mango biche
+              en tiras.
+            </p>
+
+            <div class="sabores">
+
+              <strong>Sabores disponibles:</strong>
+
+              <ul class="lista-sabores">
+                <li>Maracuyá</li>
+                <li>Bon Bon Bum</li>
+                <li>Bon Bon Bum mango biche</li>
+                <li>Manzana verde</li>
+                <li>Blueberry</li>
+                <li>Cereza</li>
+                <li>Mango biche</li>
+                <li>Frutos rojos</li>
+                <li>Sandía</li>
+                <li>Cannabis</li>
+                <li>Tussi</li>
+                <li>Smirnoff cereza</li>
+                <li>Smirnoff lulo</li>
+              </ul>
+
+            </div>
+
+            <div class="opciones-precio">
+
+              <div class="opcion-precio">
+                <span>Con Corona</span>
+                <strong>$16.000</strong>
+              </div>
+
+              <div class="opcion-precio">
+                <span>Con otra cerveza</span>
+                <strong>$15.000</strong>
+              </div>
+
             </div>
 
           </div>
-
         </article>
 
       </div>
@@ -625,73 +744,145 @@
       <div class="lista-productos">
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Michelada Green</h4>
-            <p class="precio-producto">$15.000</p>
-          </div>
 
-          <p class="descripcion-producto">
-            Frappe de mango, zumo de limón, mango rayado y cerveza
-            de tu elección.
-          </p>
-        </article>
+          <img
+            src="michelada-green.jpg"
+            alt="Michelada Green de GuaicoChelas"
+            class="imagen-producto"
+            loading="lazy"
+          >
 
-        <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Michelada en las rocas</h4>
-            <p class="precio-producto">$13.000</p>
-          </div>
+          <div class="informacion-producto">
 
-          <p class="descripcion-producto">
-            Escarchado, hielo, mango rayado, zumo de limón, tajín
-            y cerveza de tu elección.
-          </p>
-        </article>
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Michelada Green
+              </h4>
 
-        <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Michelada tradicional</h4>
-          </div>
-
-          <p class="descripcion-producto">
-            Escarchado, zumo de limón, tajín y cerveza de tu elección.
-          </p>
-
-          <div class="opciones-precio">
-            <div class="opcion-precio">
-              <span>Con Corona</span>
-              <strong>$10.000</strong>
+              <p class="precio-producto">
+                $15.000
+              </p>
             </div>
 
-            <div class="opcion-precio">
-              <span>Con otra cerveza</span>
-              <strong>$8.000</strong>
+            <p class="descripcion-producto">
+              Frappe de mango, zumo de limón, mango rayado y cerveza
+              de tu elección.
+            </p>
+
+            <button
+              type="button"
+              class="boton-video"
+              onclick="abrirVideo(
+                'michelada-green.mp4',
+                'Michelada Green',
+                'michelada-green.jpg'
+              )"
+            >
+              ▶ Ver video
+            </button>
+
+          </div>
+        </article>
+
+        <article class="tarjeta-producto">
+          <div class="informacion-producto">
+
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Michelada en las rocas
+              </h4>
+
+              <p class="precio-producto">
+                $13.000
+              </p>
             </div>
+
+            <p class="descripcion-producto">
+              Escarchado, hielo, mango rayado, zumo de limón, tajín
+              y cerveza de tu elección.
+            </p>
+
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Gomichela</h4>
-            <p class="precio-producto">$13.000</p>
-          </div>
+          <div class="informacion-producto">
 
-          <p class="descripcion-producto">
-            Escarchado, zumo de limón, tajín, porción de gomas,
-            perlas explosivas, hielo y cerveza de tu elección.
-          </p>
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Michelada tradicional
+              </h4>
+            </div>
+
+            <p class="descripcion-producto">
+              Escarchado, zumo de limón, tajín y cerveza de tu elección.
+            </p>
+
+            <div class="opciones-precio">
+
+              <div class="opcion-precio">
+                <span>Con Corona</span>
+                <strong>$10.000</strong>
+              </div>
+
+              <div class="opcion-precio">
+                <span>Con otra cerveza</span>
+                <strong>$8.000</strong>
+              </div>
+
+            </div>
+
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Michelada cítrica</h4>
-            <p class="precio-producto">$12.000</p>
-          </div>
 
-          <p class="descripcion-producto">
-            Mango biche, pulpa de maracuyá, zumo de limón, tajín
-            y súper ácido.
-          </p>
+          <img
+            src="gomichela.jpg"
+            alt="Gomichela de GuaicoChelas"
+            class="imagen-producto"
+            loading="lazy"
+          >
+
+          <div class="informacion-producto">
+
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Gomichela
+              </h4>
+
+              <p class="precio-producto">
+                $13.000
+              </p>
+            </div>
+
+            <p class="descripcion-producto">
+              Escarchado, zumo de limón, tajín, porción de gomas,
+              perlas explosivas, hielo y cerveza de tu elección.
+            </p>
+
+          </div>
+        </article>
+
+        <article class="tarjeta-producto">
+          <div class="informacion-producto">
+
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Michelada cítrica
+              </h4>
+
+              <p class="precio-producto">
+                $12.000
+              </p>
+            </div>
+
+            <p class="descripcion-producto">
+              Mango biche, pulpa de maracuyá, zumo de limón, tajín
+              y súper ácido.
+            </p>
+
+          </div>
         </article>
 
       </div>
@@ -707,7 +898,7 @@
     </div>
   </section>
 
-  <!-- Cócteles -->
+  <!-- Cócteles granizados -->
   <section
     id="productos-cocteles"
     class="pantalla pantalla-productos"
@@ -727,114 +918,146 @@
       <div class="lista-productos">
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Tequila Sunrise</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Tequila Sunrise</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Maracuyá</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Maracuyá</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Coco Loco</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Coco Loco</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Mango Biche</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Mango Biche</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Jamaica Tropical</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Jamaica Tropical</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Bon Bon Bum</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Bon Bon Bum</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Sandía</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Sandía</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Margarita</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Margarita</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Blueberry</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Blueberry</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Smirnoff Lulo</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Smirnoff Lulo</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Smirnoff Cereza</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Smirnoff Cereza</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Tussi</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Tussi</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Piña Colada</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Piña Colada</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Baileys Whisky</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Baileys Whisky</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Crema de Maracuyá</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Crema de Maracuyá</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Fresas con Crema</h4>
-            <p class="precio-producto">$15.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Fresas con Crema</h4>
+              <p class="precio-producto">$15.000</p>
+            </div>
           </div>
         </article>
 
@@ -867,102 +1090,118 @@
       <div class="lista-productos">
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Mango biche rayado</h4>
-            <p class="precio-producto">$5.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Mango biche rayado</h4>
+              <p class="precio-producto">$5.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Mango biche rayado, dulce, agridulce o ácido. Lo
-            acompañamos con nuestros dulces y chamoy artesanales.
-          </p>
+            <p class="descripcion-producto">
+              Mango biche rayado, dulce, agridulce o ácido. Lo
+              acompañamos con nuestros dulces y chamoy artesanales.
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Frappe de mango</h4>
-            <p class="precio-producto">$8.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Frappe de mango</h4>
+              <p class="precio-producto">$8.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Refrescante frappe de mango biche, preparado con mango
-            verde y servido bien frío.
-          </p>
+            <p class="descripcion-producto">
+              Refrescante frappe de mango biche, preparado con mango
+              verde y servido bien frío.
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Frappe de maracumango</h4>
-            <p class="precio-producto">$8.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Frappe de maracumango</h4>
+              <p class="precio-producto">$8.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Mezcla tropical de maracuyá y mango biche en un frappe
-            helado y lleno de sabor.
-          </p>
+            <p class="descripcion-producto">
+              Mezcla tropical de maracuyá y mango biche en un frappe
+              helado y lleno de sabor.
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Cholado</h4>
-            <p class="precio-producto">$8.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Cholado</h4>
+              <p class="precio-producto">$8.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Base de frappe, mango biche rayado, manzana, pera,
-            maracuyá y una bola de helado.
-          </p>
+            <p class="descripcion-producto">
+              Base de frappe, mango biche rayado, manzana, pera,
+              maracuyá y una bola de helado.
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Soda mango biche</h4>
-            <p class="precio-producto">$6.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Soda mango biche</h4>
+              <p class="precio-producto">$6.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Refrescante soda de mango con frappe de mango biche
-            artesanal.
-          </p>
+            <p class="descripcion-producto">
+              Refrescante soda de mango con frappe de mango biche
+              artesanal.
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Tentación tropical</h4>
-            <p class="precio-producto">$8.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Tentación tropical</h4>
+              <p class="precio-producto">$8.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Mezcla de mango y maracuyá con un toque de lechera,
-            bola de helado y cereza.
-          </p>
+            <p class="descripcion-producto">
+              Mezcla de mango y maracuyá con un toque de lechera,
+              bola de helado y cereza.
+            </p>
+          </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">
-              Helados de mango biche
-            </h4>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">
+                Helados de mango biche
+              </h4>
 
-            <p class="precio-producto">$3.000</p>
+              <p class="precio-producto">$3.000</p>
+            </div>
+
+            <p class="descripcion-producto">
+              Helados artesanales de mango biche con equilibrio entre
+              lo ácido y lo dulce.
+            </p>
           </div>
-
-          <p class="descripcion-producto">
-            Helados artesanales de mango biche con equilibrio entre
-            lo ácido y lo dulce.
-          </p>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Gomas enchiladas</h4>
-            <p class="precio-producto">$5.000</p>
-          </div>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Gomas enchiladas</h4>
+              <p class="precio-producto">$5.000</p>
+            </div>
 
-          <p class="descripcion-producto">
-            Gomas a tu elección con limón, tajín, chamoy y dulce
-            de tamarindo.
-          </p>
+            <p class="descripcion-producto">
+              Gomas a tu elección con limón, tajín, chamoy y dulce
+              de tamarindo.
+            </p>
+          </div>
         </article>
 
       </div>
@@ -978,7 +1217,7 @@
     </div>
   </section>
 
-  <!-- Sodas -->
+  <!-- Sodas sin alcohol -->
   <section
     id="productos-sodas"
     class="pantalla pantalla-productos"
@@ -999,44 +1238,56 @@
       <div class="lista-productos">
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Bon Bon Bum</h4>
-            <p class="precio-producto">$12.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Bon Bon Bum</h4>
+              <p class="precio-producto">$12.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Kiwi</h4>
-            <p class="precio-producto">$12.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Kiwi</h4>
+              <p class="precio-producto">$12.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Mango Biche</h4>
-            <p class="precio-producto">$12.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Mango Biche</h4>
+              <p class="precio-producto">$12.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Manzana Verde</h4>
-            <p class="precio-producto">$12.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Manzana Verde</h4>
+              <p class="precio-producto">$12.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Limonada Cerezada</h4>
-            <p class="precio-producto">$12.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Limonada Cerezada</h4>
+              <p class="precio-producto">$12.000</p>
+            </div>
           </div>
         </article>
 
         <article class="tarjeta-producto">
-          <div class="encabezado-producto">
-            <h4 class="nombre-producto">Maracuyá</h4>
-            <p class="precio-producto">$12.000</p>
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">Maracuyá</h4>
+              <p class="precio-producto">$12.000</p>
+            </div>
           </div>
         </article>
 
@@ -1053,8 +1304,51 @@
     </div>
   </section>
 
+  <!-- Ventana del video -->
+  <div
+    id="modal-video"
+    class="modal-video"
+    onclick="cerrarVideoAlTocarFondo(event)"
+  >
+    <div class="contenedor-video">
+
+      <div class="encabezado-video">
+
+        <h3
+          id="titulo-video"
+          class="titulo-video"
+        >
+          Video del producto
+        </h3>
+
+        <button
+          type="button"
+          class="cerrar-video"
+          onclick="cerrarVideo()"
+          aria-label="Cerrar video"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <video
+        id="reproductor-video"
+        class="reproductor-video"
+        controls
+        playsinline
+        preload="metadata"
+      >
+        Tu navegador no puede reproducir este video.
+      </video>
+
+    </div>
+  </div>
+
   <script>
     function mostrarPantalla(idPantalla) {
+      cerrarVideo();
+
       document
         .querySelectorAll(".pantalla")
         .forEach(function(pantalla) {
@@ -1067,6 +1361,50 @@
 
       window.scrollTo(0, 0);
     }
+
+    function abrirVideo(archivo, titulo, portada) {
+      const modal = document.getElementById("modal-video");
+      const reproductor = document.getElementById("reproductor-video");
+      const tituloVideo = document.getElementById("titulo-video");
+
+      reproductor.src = archivo;
+      reproductor.poster = portada;
+      tituloVideo.textContent = titulo;
+
+      modal.classList.add("activo");
+      document.body.classList.add("video-abierto");
+
+      reproductor.load();
+    }
+
+    function cerrarVideo() {
+      const modal = document.getElementById("modal-video");
+      const reproductor = document.getElementById("reproductor-video");
+
+      if (!modal || !reproductor) {
+        return;
+      }
+
+      reproductor.pause();
+      reproductor.removeAttribute("src");
+      reproductor.removeAttribute("poster");
+      reproductor.load();
+
+      modal.classList.remove("activo");
+      document.body.classList.remove("video-abierto");
+    }
+
+    function cerrarVideoAlTocarFondo(evento) {
+      if (evento.target.id === "modal-video") {
+        cerrarVideo();
+      }
+    }
+
+    document.addEventListener("keydown", function(evento) {
+      if (evento.key === "Escape") {
+        cerrarVideo();
+      }
+    });
   </script>
 
 </body>
