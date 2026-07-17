@@ -18,6 +18,10 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -38,9 +42,18 @@
       display: flex;
     }
 
+    .pantalla-productos {
+      align-items: flex-start;
+    }
+
     .contenido {
       width: min(100%, 440px);
       text-align: center;
+    }
+
+    .contenido-productos {
+      width: min(100%, 680px);
+      padding: 15px 0 30px;
     }
 
     .logo {
@@ -200,6 +213,103 @@
       font-size: 0.88rem;
     }
 
+    /* Sección de productos */
+
+    .titulo-seccion {
+      margin: 30px 0 15px;
+      padding-bottom: 9px;
+      color: var(--verde);
+      font-size: 1.35rem;
+      border-bottom: 2px solid var(--rojo);
+    }
+
+    .titulo-seccion:first-of-type {
+      margin-top: 10px;
+    }
+
+    .lista-productos {
+      display: grid;
+      gap: 16px;
+    }
+
+    .tarjeta-producto {
+      padding: 20px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 247, 179, 0.24);
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    .encabezado-producto {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nombre-producto {
+      margin: 0;
+      color: var(--blanco);
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .precio-producto {
+      margin: 0;
+      flex-shrink: 0;
+      color: var(--rojo);
+      font-size: 1.12rem;
+      font-weight: 800;
+    }
+
+    .descripcion-producto {
+      margin: 12px 0 0;
+      color: var(--verde);
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .sabores {
+      margin: 15px 0 0;
+      padding: 14px;
+      background: rgba(212, 247, 179, 0.08);
+      border-radius: 13px;
+    }
+
+    .sabores strong {
+      color: var(--rojo);
+    }
+
+    .lista-sabores {
+      margin: 8px 0 0;
+      padding-left: 20px;
+      color: var(--blanco);
+      line-height: 1.55;
+    }
+
+    .opciones-precio {
+      display: grid;
+      gap: 7px;
+      margin-top: 14px;
+    }
+
+    .opcion-precio {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding-top: 7px;
+      border-top: 1px dashed rgba(212, 247, 179, 0.35);
+    }
+
+    .opcion-precio span:first-child {
+      color: var(--verde);
+    }
+
+    .opcion-precio strong {
+      color: var(--rojo);
+    }
+
     @media (max-width: 420px) {
       .pantalla {
         padding: 18px;
@@ -217,6 +327,18 @@
       .red-social {
         width: 50px;
         height: 50px;
+      }
+
+      .tarjeta-producto {
+        padding: 17px;
+      }
+
+      .encabezado-producto {
+        display: block;
+      }
+
+      .precio-producto {
+        margin-top: 6px;
       }
     }
   </style>
@@ -264,7 +386,6 @@
         📍 Sandoná, Nariño
       </p>
 
-      <!-- Redes sociales -->
       <div class="redes-sociales">
 
         <p class="titulo-redes">
@@ -319,7 +440,6 @@
           </a>
 
         </div>
-
       </div>
 
       <p class="pie">
@@ -384,14 +504,189 @@
   </section>
 
   <!-- Pantalla de Micheladas -->
-  <section id="productos-micheladas" class="pantalla">
-    <div class="contenido">
+  <section
+    id="productos-micheladas"
+    class="pantalla pantalla-productos"
+  >
+    <div class="contenido contenido-productos">
 
       <h2>Micheladas</h2>
 
       <p class="texto-categorias">
-        Elige tu experiencia favorita
+        Refrescantes, atrevidas y llenas de sabor
       </p>
+
+      <!-- Micheladas granizadas -->
+      <h3 class="titulo-seccion">
+        🍺 Micheladas granizadas
+      </h3>
+
+      <div class="lista-productos">
+
+        <article class="tarjeta-producto">
+
+          <div class="encabezado-producto">
+            <h4 class="nombre-producto">
+              Michelada granizada
+            </h4>
+          </div>
+
+          <p class="descripcion-producto">
+            Escarchado, zumo de limón, tajín, brocheta de gomas,
+            perlas explosivas, cerveza de tu elección y mango biche
+            en tiras.
+          </p>
+
+          <div class="sabores">
+            <strong>Sabores disponibles:</strong>
+
+            <ul class="lista-sabores">
+              <li>Maracuyá</li>
+              <li>Bon Bon Bum</li>
+              <li>Bon Bon Bum mango biche</li>
+              <li>Manzana verde</li>
+              <li>Blueberry</li>
+              <li>Cereza</li>
+              <li>Mango biche</li>
+              <li>Frutos rojos</li>
+              <li>Sandía</li>
+              <li>Cannabis</li>
+              <li>Tussi</li>
+              <li>Smirnoff cereza</li>
+              <li>Smirnoff lulo</li>
+            </ul>
+          </div>
+
+          <div class="opciones-precio">
+
+            <div class="opcion-precio">
+              <span>Con Corona</span>
+              <strong>$16.000</strong>
+            </div>
+
+            <div class="opcion-precio">
+              <span>Con otra cerveza</span>
+              <strong>$15.000</strong>
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+      <!-- Chelas de la casa -->
+      <h3 class="titulo-seccion">
+        ⭐ Chelas de la casa
+      </h3>
+
+      <div class="lista-productos">
+
+        <article class="tarjeta-producto">
+
+          <div class="encabezado-producto">
+            <h4 class="nombre-producto">
+              Michelada Green
+            </h4>
+
+            <p class="precio-producto">
+              $15.000
+            </p>
+          </div>
+
+          <p class="descripcion-producto">
+            Frappe de mango, zumo de limón, mango rayado y cerveza
+            de tu elección.
+          </p>
+
+        </article>
+
+        <article class="tarjeta-producto">
+
+          <div class="encabezado-producto">
+            <h4 class="nombre-producto">
+              Michelada en las rocas
+            </h4>
+
+            <p class="precio-producto">
+              $13.000
+            </p>
+          </div>
+
+          <p class="descripcion-producto">
+            Escarchado, hielo, mango rayado, zumo de limón, tajín
+            y cerveza de tu elección.
+          </p>
+
+        </article>
+
+        <article class="tarjeta-producto">
+
+          <div class="encabezado-producto">
+            <h4 class="nombre-producto">
+              Michelada tradicional
+            </h4>
+          </div>
+
+          <p class="descripcion-producto">
+            Escarchado, zumo de limón, tajín y cerveza de tu elección.
+          </p>
+
+          <div class="opciones-precio">
+
+            <div class="opcion-precio">
+              <span>Con Corona</span>
+              <strong>$10.000</strong>
+            </div>
+
+            <div class="opcion-precio">
+              <span>Con otra cerveza</span>
+              <strong>$8.000</strong>
+            </div>
+
+          </div>
+
+        </article>
+
+        <article class="tarjeta-producto">
+
+          <div class="encabezado-producto">
+            <h4 class="nombre-producto">
+              Gomichela
+            </h4>
+
+            <p class="precio-producto">
+              $13.000
+            </p>
+          </div>
+
+          <p class="descripcion-producto">
+            Escarchado, zumo de limón, tajín, porción de gomas,
+            perlas explosivas, hielo y cerveza de tu elección.
+          </p>
+
+        </article>
+
+        <article class="tarjeta-producto">
+
+          <div class="encabezado-producto">
+            <h4 class="nombre-producto">
+              Michelada cítrica
+            </h4>
+
+            <p class="precio-producto">
+              $12.000
+            </p>
+          </div>
+
+          <p class="descripcion-producto">
+            Mango biche, pulpa de maracuyá, zumo de limón, tajín
+            y súper ácido.
+          </p>
+
+        </article>
+
+      </div>
 
       <button
         type="button"
@@ -406,9 +701,11 @@
 
   <script>
     function ocultarPantallas() {
-      document.querySelectorAll(".pantalla").forEach(function(pantalla) {
-        pantalla.classList.remove("activa");
-      });
+      document
+        .querySelectorAll(".pantalla")
+        .forEach(function(pantalla) {
+          pantalla.classList.remove("activa");
+        });
     }
 
     function mostrarCategorias() {
@@ -425,6 +722,7 @@
 
     function mostrarMicheladas() {
       ocultarPantallas();
+
       document
         .getElementById("productos-micheladas")
         .classList.add("activa");
