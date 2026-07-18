@@ -2,26 +2,12 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GuaicoChelas | Carta Interactiva</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet"
-  >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -31,13 +17,9 @@
       --blanco: #FFFFFF;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -47,14 +29,9 @@
       font-family: "Baloo 2", Arial, sans-serif;
     }
 
-    body.modal-abierto {
-      overflow: hidden;
-    }
+    body.modal-abierto { overflow: hidden; }
 
-    button,
-    a {
-      font-family: inherit;
-    }
+    button, a { font-family: inherit; }
 
     .pantalla {
       min-height: 100vh;
@@ -64,13 +41,8 @@
       padding: 24px;
     }
 
-    .pantalla.activa {
-      display: flex;
-    }
-
-    .pantalla-productos {
-      align-items: flex-start;
-    }
+    .pantalla.activa { display: flex; }
+    .pantalla-productos { align-items: flex-start; }
 
     .contenido {
       width: min(100%, 440px);
@@ -108,23 +80,25 @@
       line-height: 1.1;
     }
 
+    .eslogan,
+    .texto-categorias {
+      color: var(--verde);
+      line-height: 1.4;
+    }
+
     .eslogan {
       margin: 14px 0 30px;
-      color: var(--verde);
       font-size: 1.25rem;
-      font-weight: 500;
-      line-height: 1.4;
     }
 
     .texto-categorias {
       margin: 0 0 24px;
-      color: var(--verde);
       font-size: 1.1rem;
-      line-height: 1.4;
     }
 
     .botones,
-    .categorias {
+    .categorias,
+    .lista-productos {
       display: grid;
       gap: 14px;
     }
@@ -142,10 +116,7 @@
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        opacity 0.2s ease,
-        border-color 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
     }
 
     .boton:hover,
@@ -160,22 +131,14 @@
       box-shadow: 0 10px 24px rgba(255, 51, 0, 0.25);
     }
 
-    .boton-secundario {
-      background: var(--verde);
-      color: var(--fondo);
-      border: 2px solid var(--verde);
-    }
-
+    .boton-secundario,
     .categoria {
       background: var(--verde);
       color: var(--fondo);
-      border: 3px solid transparent;
     }
 
-    .categoria:hover,
-    .categoria:focus {
-      border-color: var(--rojo);
-    }
+    .categoria { border: 3px solid transparent; }
+    .categoria:hover, .categoria:focus { border-color: var(--rojo); }
 
     .boton-volver {
       margin-top: 24px;
@@ -187,23 +150,17 @@
     .ubicacion {
       margin: 26px 0 0;
       color: var(--verde);
-      font-size: 1rem;
     }
 
-    .redes-sociales {
-      margin-top: 24px;
-    }
+    .redes-sociales { margin-top: 24px; }
 
     .titulo-redes {
       margin: 0 0 14px;
-      color: var(--blanco);
-      font-size: 0.95rem;
       opacity: 0.82;
     }
 
     .iconos-redes {
       display: flex;
-      align-items: center;
       justify-content: center;
       gap: 16px;
     }
@@ -219,31 +176,17 @@
       border-radius: 50%;
       background: var(--blanco);
       border: 2px solid var(--verde);
-      text-decoration: none;
       box-shadow: 0 7px 18px rgba(0, 0, 0, 0.25);
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .red-social:hover,
-    .red-social:focus {
-      transform: translateY(-3px) scale(1.04);
-      border-color: var(--rojo);
-      box-shadow: 0 9px 22px rgba(255, 51, 0, 0.25);
     }
 
     .logo-red-social {
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: contain;
     }
 
     .pie {
       margin-top: 18px;
-      color: var(--blanco);
       opacity: 0.72;
       font-size: 0.88rem;
     }
@@ -253,27 +196,16 @@
       padding-bottom: 9px;
       color: var(--verde);
       font-size: 1.45rem;
-      font-weight: 800;
       border-bottom: 2px solid var(--rojo);
-    }
-
-    .titulo-seccion:first-of-type {
-      margin-top: 10px;
     }
 
     .nota-categoria {
       margin: 0 0 18px;
       padding: 13px 16px;
       color: var(--verde);
-      line-height: 1.45;
       background: rgba(212, 247, 179, 0.08);
       border: 1px solid rgba(212, 247, 179, 0.22);
       border-radius: 14px;
-    }
-
-    .lista-productos {
-      display: grid;
-      gap: 16px;
     }
 
     .tarjeta-producto {
@@ -289,7 +221,6 @@
       position: relative;
       cursor: pointer;
       overflow: hidden;
-      background: var(--fondo);
     }
 
     .imagen-producto {
@@ -297,12 +228,6 @@
       height: 260px;
       display: block;
       object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-
-    .contenedor-imagen-producto:hover .imagen-producto,
-    .contenedor-imagen-producto:focus .imagen-producto {
-      transform: scale(1.03);
     }
 
     .indicador-ampliar {
@@ -314,9 +239,7 @@
       background: rgba(1, 26, 30, 0.9);
       color: var(--verde);
       font-size: 0.85rem;
-      font-weight: 700;
       border: 1px solid var(--verde);
-      pointer-events: none;
     }
 
     .aviso-imagen {
@@ -325,56 +248,43 @@
       background: rgba(212, 247, 179, 0.06);
       color: rgba(255, 255, 255, 0.68);
       font-size: 0.76rem;
-      font-weight: 500;
-      line-height: 1.3;
       text-align: center;
-      border-top: 1px solid rgba(212, 247, 179, 0.15);
     }
 
-    .informacion-producto {
-      padding: 20px;
-    }
+    .informacion-producto { padding: 20px; }
 
     .encabezado-producto {
       display: flex;
-      align-items: flex-start;
       justify-content: space-between;
       gap: 16px;
     }
 
-    .nombre-producto {
+    .nombre-producto,
+    .precio-producto {
       margin: 0;
-      color: var(--blanco);
       font-size: 1.18rem;
       font-weight: 800;
-      line-height: 1.25;
     }
 
     .precio-producto {
-      margin: 0;
-      flex-shrink: 0;
       color: var(--rojo);
-      font-size: 1.18rem;
-      font-weight: 800;
+      flex-shrink: 0;
     }
 
     .descripcion-producto {
       margin: 11px 0 0;
       color: var(--verde);
-      font-size: 1rem;
       line-height: 1.5;
     }
 
     .sabores {
-      margin: 15px 0 0;
+      margin-top: 15px;
       padding: 14px;
       background: rgba(212, 247, 179, 0.08);
       border-radius: 13px;
     }
 
-    .sabores strong {
-      color: var(--rojo);
-    }
+    .sabores strong { color: var(--rojo); }
 
     .lista-sabores {
       display: grid;
@@ -382,8 +292,6 @@
       gap: 6px 20px;
       margin: 10px 0 0;
       padding-left: 20px;
-      color: var(--blanco);
-      line-height: 1.35;
     }
 
     .opciones-precio {
@@ -395,24 +303,17 @@
     .opcion-precio {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
       padding-top: 7px;
       border-top: 1px dashed rgba(212, 247, 179, 0.35);
     }
 
-    .opcion-precio span:first-child {
-      color: var(--verde);
-    }
-
-    .opcion-precio strong {
-      color: var(--rojo);
-    }
+    .opcion-precio span { color: var(--verde); }
+    .opcion-precio strong { color: var(--rojo); }
 
     .boton-video {
       width: 100%;
       min-height: 50px;
       margin-top: 18px;
-      padding: 12px 18px;
       border: none;
       border-radius: 14px;
       background: var(--rojo);
@@ -420,16 +321,6 @@
       font-size: 1rem;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255, 51, 0, 0.24);
-      transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-    }
-
-    .boton-video:hover,
-    .boton-video:focus {
-      transform: translateY(-2px);
-      opacity: 0.95;
     }
 
     .modal {
@@ -443,9 +334,7 @@
       background: rgba(0, 0, 0, 0.9);
     }
 
-    .modal.activo {
-      display: flex;
-    }
+    .modal.activo { display: flex; }
 
     .contenedor-modal {
       width: min(100%, 760px);
@@ -455,13 +344,12 @@
       background: var(--fondo);
       border: 2px solid var(--verde);
       border-radius: 20px;
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.6);
     }
 
     .encabezado-modal {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       gap: 15px;
       margin-bottom: 12px;
     }
@@ -469,14 +357,11 @@
     .titulo-modal {
       margin: 0;
       color: var(--verde);
-      font-size: 1.2rem;
-      font-weight: 800;
     }
 
     .cerrar-modal {
       width: 42px;
       height: 42px;
-      flex-shrink: 0;
       border: none;
       border-radius: 50%;
       background: var(--rojo);
@@ -486,82 +371,32 @@
       cursor: pointer;
     }
 
-    .imagen-ampliada {
-      width: 100%;
-      max-height: 76vh;
-      display: block;
-      object-fit: contain;
-      border-radius: 14px;
-      background: #000000;
-    }
-
+    .imagen-ampliada,
     .reproductor-video {
       width: 100%;
       max-height: 76vh;
       display: block;
       object-fit: contain;
       border-radius: 14px;
-      background: #000000;
+      background: #000;
     }
 
     @media (max-width: 420px) {
-      .pantalla {
-        padding: 18px;
-      }
-
-      .logo {
-        width: 205px;
-      }
-
-      .boton {
-        min-height: 56px;
-        font-size: 1rem;
-      }
-
-      .red-social {
-        width: 50px;
-        height: 50px;
-      }
-
-      .imagen-producto {
-        height: 230px;
-      }
-
-      .informacion-producto {
-        padding: 17px;
-      }
-
-      .encabezado-producto {
-        display: block;
-      }
-
-      .precio-producto {
-        margin-top: 5px;
-      }
-
-      .lista-sabores {
-        grid-template-columns: 1fr;
-      }
-
-      .contenedor-modal {
-        padding: 11px;
-      }
+      .pantalla { padding: 18px; }
+      .logo { width: 205px; }
+      .imagen-producto { height: 230px; }
+      .encabezado-producto { display: block; }
+      .precio-producto { margin-top: 5px; }
+      .lista-sabores { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Pantalla de inicio -->
   <main id="inicio" class="pantalla activa">
     <section class="contenido">
-
-      <img
-        src="logo-guaicochelas.jpg"
-        alt="Logo oficial de GuaicoChelas"
-        class="logo"
-      >
-
+      <img src="logo-guaicochelas.jpg" alt="Logo oficial de GuaicoChelas" class="logo">
       <h1>GuaicoChelas</h1>
 
       <p class="eslogan">
@@ -570,185 +405,67 @@
       </p>
 
       <div class="botones">
-
-        <button
-          type="button"
-          class="boton boton-principal"
-          onclick="mostrarPantalla('menu')"
-        >
+        <button type="button" class="boton boton-principal" onclick="mostrarPantalla('menu')">
           🍺 Entrar a la carta
         </button>
 
-        <a
-          href="#"
-          class="boton boton-secundario"
-        >
+        <a href="#" class="boton boton-secundario">
           📄 Ver carta PDF
         </a>
-
       </div>
 
-      <p class="ubicacion">
-        📍 Sandoná, Nariño
-      </p>
+      <p class="ubicacion">📍 Sandoná, Nariño</p>
 
       <div class="redes-sociales">
-
-        <p class="titulo-redes">
-          Síguenos en nuestras redes
-        </p>
+        <p class="titulo-redes">Síguenos en nuestras redes</p>
 
         <div class="iconos-redes">
-
-          <a
-            href="https://www.instagram.com/guaicochelas?igsh=MWczNmxreTkzdXB0dw=="
-            class="red-social"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Instagram de GuaicoChelas"
-          >
-            <img
-              src="Logo_Instagram.png"
-              alt="Instagram"
-              class="logo-red-social"
-            >
+          <a href="https://www.instagram.com/guaicochelas?igsh=MWczNmxreTkzdXB0dw==" class="red-social" target="_blank" rel="noopener noreferrer">
+            <img src="Logo_Instagram.png" alt="Instagram" class="logo-red-social">
           </a>
 
-          <a
-            href="https://www.facebook.com/share/17zmut9BG1/"
-            class="red-social"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Facebook de GuaicoChelas"
-          >
-            <img
-              src="Logo_Facebook.png"
-              alt="Facebook"
-              class="logo-red-social"
-            >
+          <a href="https://www.facebook.com/share/17zmut9BG1/" class="red-social" target="_blank" rel="noopener noreferrer">
+            <img src="Logo_Facebook.png" alt="Facebook" class="logo-red-social">
           </a>
 
-          <a
-            href="https://vt.tiktok.com/ZSXfL4mhr/"
-            class="red-social"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="TikTok de GuaicoChelas"
-          >
-            <img
-              src="Logo_Tik_Tok.png"
-              alt="TikTok"
-              class="logo-red-social"
-            >
+          <a href="https://vt.tiktok.com/ZSXfL4mhr/" class="red-social" target="_blank" rel="noopener noreferrer">
+            <img src="Logo_Tik_Tok.png" alt="TikTok" class="logo-red-social">
           </a>
-
         </div>
       </div>
 
-      <p class="pie">
-        Carta interactiva oficial
-      </p>
-
+      <p class="pie">Carta interactiva oficial</p>
     </section>
   </main>
 
-  <!-- Menú de categorías -->
   <section id="menu" class="pantalla">
     <div class="contenido">
-
       <h2>Nuestra carta</h2>
-
-      <p class="texto-categorias">
-        ¿Qué deseas disfrutar hoy?
-      </p>
+      <p class="texto-categorias">¿Qué deseas disfrutar hoy?</p>
 
       <div class="categorias">
-
-        <button
-          type="button"
-          class="boton categoria"
-          onclick="mostrarPantalla('productos-micheladas')"
-        >
-          🍺 Micheladas
-        </button>
-
-        <button
-          type="button"
-          class="boton categoria"
-          onclick="mostrarPantalla('productos-cocteles')"
-        >
-          🍹 Cócteles granizados
-        </button>
-
-        <button
-          type="button"
-          class="boton categoria"
-          onclick="mostrarPantalla('productos-mangomania')"
-        >
-          🥭 Mangomanía
-        </button>
-
-        <button
-          type="button"
-          class="boton categoria"
-          onclick="mostrarPantalla('productos-sodas')"
-        >
-          🥤 Sodas sin alcohol
-        </button>
-
+        <button class="boton categoria" onclick="mostrarPantalla('productos-micheladas')">🍺 Micheladas</button>
+        <button class="boton categoria" onclick="mostrarPantalla('productos-cocteles')">🍹 Cócteles granizados</button>
+        <button class="boton categoria" onclick="mostrarPantalla('productos-mangomania')">🥭 Mangomanía</button>
+        <button class="boton categoria" onclick="mostrarPantalla('productos-sodas')">🥤 Sodas sin alcohol</button>
       </div>
 
-      <button
-        type="button"
-        class="boton boton-volver"
-        onclick="mostrarPantalla('inicio')"
-      >
-        ← Volver al inicio
-      </button>
-
+      <button class="boton boton-volver" onclick="mostrarPantalla('inicio')">← Volver al inicio</button>
     </div>
   </section>
 
-  <!-- Micheladas -->
-  <section
-    id="productos-micheladas"
-    class="pantalla pantalla-productos"
-  >
+  <section id="productos-micheladas" class="pantalla pantalla-productos">
     <div class="contenido-productos">
-
       <h2>Micheladas</h2>
+      <p class="texto-categorias">Refrescantes, atrevidas y llenas de sabor</p>
 
-      <p class="texto-categorias">
-        Refrescantes, atrevidas y llenas de sabor
-      </p>
-
-      <h3 class="titulo-seccion">
-        🍺 Micheladas granizadas
-      </h3>
+      <h3 class="titulo-seccion">🍺 Micheladas granizadas</h3>
 
       <div class="lista-productos">
-
         <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'michelada-granizada.jpg',
-              'Michelada granizada'
-            )"
-          >
-            <img
-              src="michelada-granizada.jpg"
-              alt="Michelada granizada de GuaicoChelas"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
+          <div class="contenedor-imagen-producto" onclick="abrirImagen('michelada-granizada.jpg','Michelada granizada')">
+            <img src="michelada-granizada.jpg" alt="Michelada granizada" class="imagen-producto" loading="lazy">
+            <span class="indicador-ampliar">🔍 Ver completa</span>
           </div>
 
           <p class="aviso-imagen">
@@ -756,27 +473,21 @@
           </p>
 
           <div class="informacion-producto">
-
             <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Michelada granizada
-              </h4>
+              <h4 class="nombre-producto">Michelada granizada</h4>
             </div>
 
             <p class="descripcion-producto">
               Escarchado, zumo de limón, tajín, brocheta de gomas,
-              perlas explosivas, cerveza de tu elección y mango biche
-              en tiras.
+              perlas explosivas, cerveza de tu elección y mango biche en tiras.
             </p>
 
             <div class="sabores">
-
               <strong>Sabores disponibles:</strong>
 
               <ul class="lista-sabores">
                 <li>Maracuyá</li>
                 <li>Bon Bon Bum</li>
-                <li>Bon Bon Bum mango biche</li>
                 <li>Manzana verde</li>
                 <li>Blueberry</li>
                 <li>Cereza</li>
@@ -785,14 +496,11 @@
                 <li>Sandía</li>
                 <li>Cannabis</li>
                 <li>Tussi</li>
-                <li>Smirnoff cereza</li>
                 <li>Smirnoff lulo</li>
               </ul>
-
             </div>
 
             <div class="opciones-precio">
-
               <div class="opcion-precio">
                 <span>Con Corona</span>
                 <strong>$16.000</strong>
@@ -802,961 +510,81 @@
                 <span>Con otra cerveza</span>
                 <strong>$15.000</strong>
               </div>
-
             </div>
-
           </div>
         </article>
-
       </div>
 
-      <h3 class="titulo-seccion">
-        ⭐ Chelas de la casa
-      </h3>
+      <h3 class="titulo-seccion">⭐ Chelas de la casa</h3>
 
-      <div class="lista-productos">
+      <div class="lista-productos" id="lista-chelas-casa"></div>
 
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'michelada-green.jpg',
-              'Michelada Green'
-            )"
-          >
-            <img
-              src="michelada-green.jpg"
-              alt="Michelada Green"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Michelada Green
-              </h4>
-
-              <p class="precio-producto">
-                $15.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Frappe de mango, zumo de limón, mango rayado y cerveza
-              de tu elección.
-            </p>
-
-            <button
-              type="button"
-              class="boton-video"
-              onclick="abrirVideo(
-                'michelada-green.mp4',
-                'Michelada Green',
-                'michelada-green.jpg'
-              )"
-            >
-              ▶ Ver video
-            </button>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Michelada en las rocas
-              </h4>
-
-              <p class="precio-producto">
-                $13.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Escarchado, hielo, mango rayado, zumo de limón, tajín
-              y cerveza de tu elección.
-            </p>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Michelada tradicional
-              </h4>
-            </div>
-
-            <p class="descripcion-producto">
-              Escarchado, zumo de limón, tajín y cerveza de tu elección.
-            </p>
-
-            <div class="opciones-precio">
-
-              <div class="opcion-precio">
-                <span>Con Corona</span>
-                <strong>$10.000</strong>
-              </div>
-
-              <div class="opcion-precio">
-                <span>Con otra cerveza</span>
-                <strong>$8.000</strong>
-              </div>
-
-            </div>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'gomichela.jpg',
-              'Gomichela'
-            )"
-          >
-            <img
-              src="gomichela.jpg"
-              alt="Gomichela"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Gomichela
-              </h4>
-
-              <p class="precio-producto">
-                $13.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Escarchado, zumo de limón, tajín, porción de gomas,
-              perlas explosivas, hielo y cerveza de tu elección.
-            </p>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Michelada cítrica
-              </h4>
-
-              <p class="precio-producto">
-                $12.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Mango biche, pulpa de maracuyá, zumo de limón, tajín
-              y súper ácido.
-            </p>
-
-          </div>
-        </article>
-
-      </div>
-
-      <button
-        type="button"
-        class="boton boton-volver"
-        onclick="mostrarPantalla('menu')"
-      >
-        ← Volver a categorías
-      </button>
-
+      <button class="boton boton-volver" onclick="mostrarPantalla('menu')">← Volver a categorías</button>
     </div>
   </section>
 
-  <!-- Cócteles granizados -->
-  <section
-    id="productos-cocteles"
-    class="pantalla pantalla-productos"
-  >
+  <section id="productos-cocteles" class="pantalla pantalla-productos">
     <div class="contenido-productos">
-
       <h2>Cócteles granizados</h2>
-
-      <p class="texto-categorias">
-        Sabores intensos y refrescantes
-      </p>
+      <p class="texto-categorias">Sabores intensos y refrescantes</p>
 
       <p class="nota-categoria">
         Todos nuestros cócteles vienen con jeringa de licor.
       </p>
 
-      <div class="lista-productos">
+      <div class="lista-productos" id="lista-cocteles"></div>
 
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Tequila Sunrise</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Maracuyá</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Coco Loco</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Coctel-Granizado-Mango-Biche.png',
-              'Cóctel granizado Mango Biche'
-            )"
-          >
-            <img
-              src="Coctel-Granizado-Mango-Biche.png"
-              alt="Cóctel granizado Mango Biche"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Mango Biche</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-
-        </article>
-
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Coctel-Granizado-Manzana-Verde.png',
-              'Cóctel granizado Manzana Verde'
-            )"
-          >
-            <img
-              src="Coctel-Granizado-Manzana-Verde.png"
-              alt="Cóctel granizado Manzana Verde"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Manzana Verde</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Jamaica Tropical</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Bon Bon Bum</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Sandía</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Margarita</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Blueberry</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Coctel-Granizado-Smirnoff-Lulo.png',
-              'Cóctel granizado Smirnoff Lulo'
-            )"
-          >
-            <img
-              src="Coctel-Granizado-Smirnoff-Lulo.png"
-              alt="Cóctel granizado Smirnoff Lulo"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Smirnoff Lulo</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Smirnoff Cereza</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Tussi</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Coctel-Granizado-Piña-Colada.jpg',
-              'Piña Colada'
-            )"
-          >
-            <img
-              src="Coctel-Granizado-Piña-Colada.jpg"
-              alt="Cóctel granizado Piña Colada"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Piña Colada</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-
-        </article>
-
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Coctel-Granizado-Baileys-Whisky.png',
-              'Baileys Whisky'
-            )"
-          >
-            <img
-              src="Coctel-Granizado-Baileys-Whisky.png"
-              alt="Cóctel granizado Baileys Whisky"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Baileys Whisky</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Crema de Maracuyá</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Fresas con Crema</h4>
-              <p class="precio-producto">$15.000</p>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <button
-        type="button"
-        class="boton boton-volver"
-        onclick="mostrarPantalla('menu')"
-      >
-        ← Volver a categorías
-      </button>
-
+      <button class="boton boton-volver" onclick="mostrarPantalla('menu')">← Volver a categorías</button>
     </div>
   </section>
 
-  <!-- Mangomanía -->
-  <section
-    id="productos-mangomania"
-    class="pantalla pantalla-productos"
-  >
+  <section id="productos-mangomania" class="pantalla pantalla-productos">
     <div class="contenido-productos">
-
       <h2>Mangomanía</h2>
+      <p class="texto-categorias">El sabor tropical que te hace agua la boca</p>
 
-      <p class="texto-categorias">
-        El sabor tropical que te hace agua la boca
-      </p>
+      <div class="lista-productos" id="lista-mangomania"></div>
 
-      <div class="lista-productos">
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Mango biche rayado
-              </h4>
-
-              <p class="precio-producto">
-                $5.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Mango biche rayado, dulce, agridulce o ácido.
-              Lo acompañamos con nuestros dulces y chamoy artesanales.
-            </p>
-
-          </div>
-        </article>
-
-        <!-- Frappe de mango: una sola imagen -->
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Frape-Mango-Biche.jpg',
-              'Frappe de mango'
-            )"
-          >
-            <img
-              src="Frape-Mango-Biche.jpg"
-              alt="Frappe de mango"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Frappe de mango
-              </h4>
-
-              <p class="precio-producto">
-                $8.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Refrescante frappe de mango biche, preparado con mango
-              verde y servido bien frío.
-            </p>
-
-          </div>
-        </article>
-
-        <!-- Frappe de maracumango con su video -->
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Frappe de maracumango
-              </h4>
-
-              <p class="precio-producto">
-                $8.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Mezcla tropical de maracuyá y mango biche en un frappe
-              helado y lleno de sabor.
-            </p>
-
-            <button
-              type="button"
-              class="boton-video"
-              onclick="abrirVideo(
-                'Frape-De-Maracumango.mp4',
-                'Frappe de maracumango',
-                ''
-              )"
-            >
-              ▶ Ver video
-            </button>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Cholado
-              </h4>
-
-              <p class="precio-producto">
-                $8.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Base de frappe, mango biche rayado, manzana, pera,
-              maracuyá y una bola de helado.
-            </p>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Soda mango biche
-              </h4>
-
-              <p class="precio-producto">
-                $6.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Refrescante soda de mango con frappe de mango biche
-              artesanal.
-            </p>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Tentación tropical
-              </h4>
-
-              <p class="precio-producto">
-                $8.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Mezcla de mango y maracuyá con un toque de lechera,
-              bola de helado y cereza.
-            </p>
-
-          </div>
-        </article>
-
-        <!-- Helados de mango biche -->
-        <article class="tarjeta-producto">
-
-          <div
-            class="contenedor-imagen-producto"
-            role="button"
-            tabindex="0"
-            onclick="abrirImagen(
-              'Helados-De-Mango-Biche.jpg',
-              'Helados de mango biche'
-            )"
-          >
-            <img
-              src="Helados-De-Mango-Biche.jpg"
-              alt="Helados de mango biche"
-              class="imagen-producto"
-              loading="lazy"
-            >
-
-            <span class="indicador-ampliar">
-              🔍 Ver completa
-            </span>
-          </div>
-
-          <p class="aviso-imagen">
-            Imagen de referencia. La presentación del producto puede variar ligeramente.
-          </p>
-
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Helados de mango biche
-              </h4>
-
-              <p class="precio-producto">
-                $3.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Helados artesanales de mango biche con equilibrio entre
-              lo ácido y lo dulce.
-            </p>
-
-            <button
-              type="button"
-              class="boton-video"
-              onclick="abrirVideo(
-                'Helado-De-Mango-Biche.mp4',
-                'Helados de mango biche',
-                'Helados-De-Mango-Biche.jpg'
-              )"
-            >
-              ▶ Ver video
-            </button>
-
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">
-                Gomas enchiladas
-              </h4>
-
-              <p class="precio-producto">
-                $5.000
-              </p>
-            </div>
-
-            <p class="descripcion-producto">
-              Gomas a tu elección con limón, tajín, chamoy y dulce
-              de tamarindo.
-            </p>
-
-          </div>
-        </article>
-
-      </div>
-
-      <button
-        type="button"
-        class="boton boton-volver"
-        onclick="mostrarPantalla('menu')"
-      >
-        ← Volver a categorías
-      </button>
-
+      <button class="boton boton-volver" onclick="mostrarPantalla('menu')">← Volver a categorías</button>
     </div>
   </section>
 
-  <!-- Sodas sin alcohol -->
-  <section
-    id="productos-sodas"
-    class="pantalla pantalla-productos"
-  >
+  <section id="productos-sodas" class="pantalla pantalla-productos">
     <div class="contenido-productos">
-
       <h2>Sodas sin alcohol</h2>
-
-      <p class="texto-categorias">
-        Refrescantes y llenas de sabor
-      </p>
+      <p class="texto-categorias">Refrescantes y llenas de sabor</p>
 
       <p class="nota-categoria">
         Escarchado, zumo de limón, tajín, brocheta dulce,
         soda y perlas explosivas.
       </p>
 
-      <div class="lista-productos">
+      <div class="lista-productos" id="lista-sodas"></div>
 
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Bon Bon Bum</h4>
-              <p class="precio-producto">$12.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Kiwi</h4>
-              <p class="precio-producto">$12.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Mango Biche</h4>
-              <p class="precio-producto">$12.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Manzana Verde</h4>
-              <p class="precio-producto">$12.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Limonada Cerezada</h4>
-              <p class="precio-producto">$12.000</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="tarjeta-producto">
-          <div class="informacion-producto">
-            <div class="encabezado-producto">
-              <h4 class="nombre-producto">Maracuyá</h4>
-              <p class="precio-producto">$12.000</p>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-      <button
-        type="button"
-        class="boton boton-volver"
-        onclick="mostrarPantalla('menu')"
-      >
-        ← Volver a categorías
-      </button>
-
+      <button class="boton boton-volver" onclick="mostrarPantalla('menu')">← Volver a categorías</button>
     </div>
   </section>
 
-  <!-- Modal de imagen -->
-  <div
-    id="modal-imagen"
-    class="modal"
-    onclick="cerrarModalAlTocarFondo(event, 'modal-imagen')"
-  >
+  <div id="modal-imagen" class="modal" onclick="cerrarFondo(event,'modal-imagen')">
     <div class="contenedor-modal">
-
       <div class="encabezado-modal">
-
-        <h3
-          id="titulo-imagen"
-          class="titulo-modal"
-        >
-          Producto
-        </h3>
-
-        <button
-          type="button"
-          class="cerrar-modal"
-          onclick="cerrarImagen()"
-          aria-label="Cerrar imagen"
-        >
-          ×
-        </button>
-
+        <h3 id="titulo-imagen" class="titulo-modal">Producto</h3>
+        <button class="cerrar-modal" onclick="cerrarImagen()">×</button>
       </div>
 
-      <img
-        id="imagen-ampliada"
-        class="imagen-ampliada"
-        src=""
-        alt=""
-      >
+      <img id="imagen-ampliada" class="imagen-ampliada" alt="">
 
       <p class="aviso-imagen">
         Imagen de referencia. La presentación del producto puede variar ligeramente.
       </p>
-
     </div>
   </div>
 
-  <!-- Modal de video -->
-  <div
-    id="modal-video"
-    class="modal"
-    onclick="cerrarModalAlTocarFondo(event, 'modal-video')"
-  >
+  <div id="modal-video" class="modal" onclick="cerrarFondo(event,'modal-video')">
     <div class="contenedor-modal">
-
       <div class="encabezado-modal">
-
-        <h3
-          id="titulo-video"
-          class="titulo-modal"
-        >
-          Video del producto
-        </h3>
-
-        <button
-          type="button"
-          class="cerrar-modal"
-          onclick="cerrarVideo()"
-          aria-label="Cerrar video"
-        >
-          ×
-        </button>
-
+        <h3 id="titulo-video" class="titulo-modal">Video del producto</h3>
+        <button class="cerrar-modal" onclick="cerrarVideo()">×</button>
       </div>
 
       <video
@@ -1766,81 +594,234 @@
         playsinline
         preload="metadata"
         onended="cerrarVideo()"
-      >
-        Tu navegador no puede reproducir este video.
-      </video>
-
+      ></video>
     </div>
   </div>
 
   <script>
+    const avisoImagen =
+      "Imagen de referencia. La presentación del producto puede variar ligeramente.";
+
+    const chelasCasa = [
+      {
+        nombre: "Michelada Green",
+        precio: "$15.000",
+        descripcion: "Frappe de mango, zumo de limón, mango rayado y cerveza de tu elección.",
+        imagen: "michelada-green.jpg",
+        video: "michelada-green.mp4"
+      },
+      {
+        nombre: "Michelada en las rocas",
+        precio: "$13.000",
+        descripcion: "Escarchado, hielo, mango rayado, zumo de limón, tajín y cerveza de tu elección."
+      },
+      {
+        nombre: "Michelada tradicional",
+        descripcion: "Escarchado, zumo de limón, tajín y cerveza de tu elección.",
+        opciones: [
+          ["Con Corona", "$11.000"],
+          ["Con otra cerveza", "$8.000"]
+        ]
+      },
+      {
+        nombre: "Gomichela",
+        precio: "$13.000",
+        descripcion: "Escarchado, zumo de limón, tajín, porción de gomas, perlas explosivas, hielo y cerveza de tu elección.",
+        imagen: "gomichela.jpg"
+      },
+      {
+        nombre: "Michelada cítrica",
+        precio: "$13.000",
+        descripcion: "Mango biche, pulpa de maracuyá, zumo de limón, tajín y súper ácido."
+      }
+    ];
+
+    const cocteles = [
+      { nombre: "Tequila Sunrise", precio: "$15.000" },
+      { nombre: "Maracuyá", precio: "$15.000" },
+      { nombre: "Coco Loco", precio: "$15.000" },
+      { nombre: "Mango Biche", precio: "$15.000", imagen: "Coctel-Granizado-Mango-Biche.png" },
+      { nombre: "Manzana Verde", precio: "$15.000", imagen: "Coctel-Granizado-Manzana-Verde.png" },
+      { nombre: "Bon Bon Bum", precio: "$15.000" },
+      { nombre: "Sandía", precio: "$15.000" },
+      { nombre: "Margarita", precio: "$15.000" },
+      { nombre: "Blueberry", precio: "$15.000" },
+      { nombre: "Smirnoff Lulo", precio: "$15.000", imagen: "Coctel-Granizado-Smirnoff-Lulo.png" },
+      { nombre: "Tussi", precio: "$15.000" },
+      { nombre: "Piña Colada", precio: "$15.000", imagen: "Coctel-Granizado-Piña-Colada.jpg" },
+      { nombre: "Baileys Whisky", precio: "$15.000", imagen: "Coctel-Granizado-Baileys-Whisky.png" },
+      { nombre: "Crema de Maracuyá", precio: "$15.000" },
+      { nombre: "Fresas con Crema", precio: "$15.000" }
+    ];
+
+    const mangomania = [
+      {
+        nombre: "Mango biche rayado",
+        precio: "$5.000",
+        descripcion: "Mango biche rayado, dulce, agridulce o ácido. Lo acompañamos con nuestros dulces y chamoy artesanales."
+      },
+      {
+        nombre: "Frappe de mango",
+        precio: "$8.000",
+        descripcion: "Refrescante frappe de mango biche, preparado con mango verde y servido bien frío.",
+        imagen: "Frape-Mango-Biche.jpg"
+      },
+      {
+        nombre: "Frappe de maracumango",
+        precio: "$8.000",
+        descripcion: "Mezcla tropical de maracuyá y mango biche en un frappe helado y lleno de sabor.",
+        video: "Frape-De-Maracumango.mp4"
+      },
+      {
+        nombre: "Cholado",
+        precio: "$8.000",
+        descripcion: "Base de frappe, mango biche rayado, manzana, pera, maracuyá y una bola de helado."
+      },
+      {
+        nombre: "Soda mango biche",
+        precio: "$6.000",
+        descripcion: "Refrescante soda de mango con frappe de mango biche artesanal."
+      },
+      {
+        nombre: "Tentación tropical",
+        precio: "$8.000",
+        descripcion: "Mezcla de mango y maracuyá con un toque de lechera, bola de helado y cereza."
+      },
+      {
+        nombre: "Helados de mango biche",
+        precio: "$3.000",
+        descripcion: "Helados artesanales de mango biche con equilibrio entre lo ácido y lo dulce.",
+        imagen: "Helados-De-Mango-Biche.jpg",
+        video: "Helado-De-Mango-Biche.mp4"
+      },
+      {
+        nombre: "Gomas enchiladas",
+        precio: "$5.000",
+        descripcion: "Gomas a tu elección con limón, tajín, chamoy y dulce de tamarindo."
+      }
+    ];
+
+    const sodas = [
+      { nombre: "Bon Bon Bum", precio: "$12.000" },
+      { nombre: "Kiwi", precio: "$12.000" },
+      { nombre: "Mango Biche", precio: "$12.000" },
+      { nombre: "Manzana Verde", precio: "$12.000" },
+      { nombre: "Limonada Cerezada", precio: "$12.000" },
+      { nombre: "Maracuyá", precio: "$12.000" }
+    ];
+
+    function crearTarjeta(producto) {
+      const imagen = producto.imagen
+        ? `
+          <div class="contenedor-imagen-producto"
+               onclick="abrirImagen('${producto.imagen}','${producto.nombre}')">
+            <img src="${producto.imagen}"
+                 alt="${producto.nombre}"
+                 class="imagen-producto"
+                 loading="lazy">
+            <span class="indicador-ampliar">🔍 Ver completa</span>
+          </div>
+          <p class="aviso-imagen">${avisoImagen}</p>
+        `
+        : "";
+
+      const descripcion = producto.descripcion
+        ? `<p class="descripcion-producto">${producto.descripcion}</p>`
+        : "";
+
+      const opciones = producto.opciones
+        ? `
+          <div class="opciones-precio">
+            ${producto.opciones.map(opcion => `
+              <div class="opcion-precio">
+                <span>${opcion[0]}</span>
+                <strong>${opcion[1]}</strong>
+              </div>
+            `).join("")}
+          </div>
+        `
+        : "";
+
+      const botonVideo = producto.video
+        ? `
+          <button
+            type="button"
+            class="boton-video"
+            onclick="abrirVideo(
+              '${producto.video}',
+              '${producto.nombre}',
+              '${producto.imagen || ""}'
+            )"
+          >
+            ▶ Ver video
+          </button>
+        `
+        : "";
+
+      return `
+        <article class="tarjeta-producto">
+          ${imagen}
+
+          <div class="informacion-producto">
+            <div class="encabezado-producto">
+              <h4 class="nombre-producto">${producto.nombre}</h4>
+              ${producto.precio ? `<p class="precio-producto">${producto.precio}</p>` : ""}
+            </div>
+
+            ${descripcion}
+            ${opciones}
+            ${botonVideo}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderizarLista(id, productos) {
+      document.getElementById(id).innerHTML =
+        productos.map(crearTarjeta).join("");
+    }
+
+    renderizarLista("lista-chelas-casa", chelasCasa);
+    renderizarLista("lista-cocteles", cocteles);
+    renderizarLista("lista-mangomania", mangomania);
+    renderizarLista("lista-sodas", sodas);
+
     function mostrarPantalla(idPantalla) {
       cerrarImagen();
       cerrarVideo();
 
-      document
-        .querySelectorAll(".pantalla")
-        .forEach(function(pantalla) {
-          pantalla.classList.remove("activa");
-        });
+      document.querySelectorAll(".pantalla").forEach(pantalla => {
+        pantalla.classList.remove("activa");
+      });
 
-      const pantallaSeleccionada =
-        document.getElementById(idPantalla);
-
-      if (pantallaSeleccionada) {
-        pantallaSeleccionada.classList.add("activa");
-      }
-
+      document.getElementById(idPantalla).classList.add("activa");
       window.scrollTo(0, 0);
     }
 
     function abrirImagen(archivo, titulo) {
-      const modal =
-        document.getElementById("modal-imagen");
-
-      const imagen =
-        document.getElementById("imagen-ampliada");
-
-      const tituloImagen =
-        document.getElementById("titulo-imagen");
-
-      imagen.src = archivo;
-      imagen.alt = titulo;
-      tituloImagen.textContent = titulo;
-
-      modal.classList.add("activo");
+      document.getElementById("imagen-ampliada").src = archivo;
+      document.getElementById("imagen-ampliada").alt = titulo;
+      document.getElementById("titulo-imagen").textContent = titulo;
+      document.getElementById("modal-imagen").classList.add("activo");
       document.body.classList.add("modal-abierto");
     }
 
     function cerrarImagen() {
-      const modal =
-        document.getElementById("modal-imagen");
+      const modal = document.getElementById("modal-imagen");
+      const imagen = document.getElementById("imagen-ampliada");
 
-      const imagen =
-        document.getElementById("imagen-ampliada");
-
-      if (!modal || !imagen) {
-        return;
-      }
+      if (!modal || !imagen) return;
 
       modal.classList.remove("activo");
       imagen.removeAttribute("src");
-
-      actualizarEstadoModal();
+      actualizarModal();
     }
 
     function abrirVideo(archivo, titulo, portada) {
-      const modal =
-        document.getElementById("modal-video");
-
-      const reproductor =
-        document.getElementById("reproductor-video");
-
-      const tituloVideo =
-        document.getElementById("titulo-video");
+      const reproductor = document.getElementById("reproductor-video");
 
       reproductor.src = archivo;
-      tituloVideo.textContent = titulo;
+      document.getElementById("titulo-video").textContent = titulo;
 
       if (portada) {
         reproductor.poster = portada;
@@ -1848,34 +829,22 @@
         reproductor.removeAttribute("poster");
       }
 
-      modal.classList.add("activo");
+      document.getElementById("modal-video").classList.add("activo");
       document.body.classList.add("modal-abierto");
 
       reproductor.load();
 
-      const intentoReproduccion =
-        reproductor.play();
-
-      if (intentoReproduccion !== undefined) {
-        intentoReproduccion.catch(function() {
-          /*
-            Algunos navegadores pueden bloquear la reproducción
-            automática. Los controles permanecen disponibles.
-          */
-        });
+      const reproduccion = reproductor.play();
+      if (reproduccion !== undefined) {
+        reproduccion.catch(() => {});
       }
     }
 
     function cerrarVideo() {
-      const modal =
-        document.getElementById("modal-video");
+      const modal = document.getElementById("modal-video");
+      const reproductor = document.getElementById("reproductor-video");
 
-      const reproductor =
-        document.getElementById("reproductor-video");
-
-      if (!modal || !reproductor) {
-        return;
-      }
+      if (!modal || !reproductor) return;
 
       reproductor.pause();
       reproductor.currentTime = 0;
@@ -1884,51 +853,34 @@
       reproductor.load();
 
       modal.classList.remove("activo");
-
-      actualizarEstadoModal();
+      actualizarModal();
     }
 
-    function cerrarModalAlTocarFondo(evento, idModal) {
-      if (evento.target.id !== idModal) {
-        return;
-      }
+    function cerrarFondo(evento, idModal) {
+      if (evento.target.id !== idModal) return;
 
-      if (idModal === "modal-imagen") {
-        cerrarImagen();
-      }
-
-      if (idModal === "modal-video") {
-        cerrarVideo();
-      }
+      if (idModal === "modal-imagen") cerrarImagen();
+      if (idModal === "modal-video") cerrarVideo();
     }
 
-    function actualizarEstadoModal() {
-      const modalImagen =
-        document.getElementById("modal-imagen");
-
-      const modalVideo =
-        document.getElementById("modal-video");
-
+    function actualizarModal() {
       const imagenAbierta =
-        modalImagen.classList.contains("activo");
+        document.getElementById("modal-imagen").classList.contains("activo");
 
       const videoAbierto =
-        modalVideo.classList.contains("activo");
+        document.getElementById("modal-video").classList.contains("activo");
 
       if (!imagenAbierta && !videoAbierto) {
         document.body.classList.remove("modal-abierto");
       }
     }
 
-    document.addEventListener(
-      "keydown",
-      function(evento) {
-        if (evento.key === "Escape") {
-          cerrarImagen();
-          cerrarVideo();
-        }
+    document.addEventListener("keydown", evento => {
+      if (evento.key === "Escape") {
+        cerrarImagen();
+        cerrarVideo();
       }
-    );
+    });
   </script>
 
 </body>
