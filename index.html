@@ -786,65 +786,45 @@
     renderizarLista("lista-mangomania", mangomania);
     renderizarLista("lista-sodas", sodas);
 
-    function mostrarPantalla(idPantalla) {
-      cerrarImagen();
-      cerrarVideo();
+    const rutasPantallas = {
+      inicio: "",
+      menu: "menu",
+      "productos-micheladas": "micheladas",
+      "productos-cocteles": "cocteles",
+      "productos-mangomania": "mangomania",
+      "productos-sodas": "sodas"
+    };
 
-      document.querySelectorAll(".pantalla").forEach(pantalla => {
-        pantalla.classList.remove("activa");
-      });
+    const pantallasPorRuta = {
+      "": "inicio",
+      menu: "menu",
+      micheladas: "productos-micheladas",
+      cocteles: "productos-cocteles",
+      mangomania: "productos-mangomania",
+      sodas: "productos-sodas"
+    };
 
-      document.getElementById(idPantalla).classList.add("activa");
-      window.scrollTo(0, 0);
-    }
-
-    function abrirImagen(archivo, titulo) {
-      document.getElementById("imagen-ampliada").src = archivo;
-      document.getElementById("imagen-ampliada").alt = titulo;
-      document.getElementById("titulo-imagen").textContent = titulo;
-      document.getElementById("modal-imagen").classList.add("activo");
-      document.body.classList.add("modal-abierto");
-    }
-
-    function cerrarImagen() {
+    function cerrarImagenSinHistorial() {
       const modal = document.getElementById("modal-imagen");
       const imagen = document.getElementById("imagen-ampliada");
 
-      if (!modal || !imagen) return;
+      if (!modal || !imagen) {
+        return;
+      }
 
       modal.classList.remove("activo");
       imagen.removeAttribute("src");
+      imagen.removeAttribute("alt");
       actualizarModal();
     }
 
-    function abrirVideo(archivo, titulo, portada) {
-      const reproductor = document.getElementById("reproductor-video");
-
-      reproductor.src = archivo;
-      document.getElementById("titulo-video").textContent = titulo;
-
-      if (portada) {
-        reproductor.poster = portada;
-      } else {
-        reproductor.removeAttribute("poster");
-      }
-
-      document.getElementById("modal-video").classList.add("activo");
-      document.body.classList.add("modal-abierto");
-
-      reproductor.load();
-
-      const reproduccion = reproductor.play();
-      if (reproduccion !== undefined) {
-        reproduccion.catch(() => {});
-      }
-    }
-
-    function cerrarVideo() {
+    function cerrarVideoSinHistorial() {
       const modal = document.getElementById("modal-video");
       const reproductor = document.getElementById("reproductor-video");
 
-      if (!modal || !reproductor) return;
+      if (!modal || !reproductor) {
+        return;
+      }
 
       reproductor.pause();
       reproductor.currentTime = 0;
@@ -856,28 +836,324 @@
       actualizarModal();
     }
 
-    function cerrarFondo(evento, idModal) {
-      if (evento.target.id !== idModal) return;
+    function cerrarModalesSinHistorial() {
+      cerrarImagenSinHistorial();
+      cerrarVideoSinHistorial();
+    }
 
-      if (idModal === "modal-imagen") cerrarImagen();
-      if (idModal === "modal-video") cerrarVideo();
+    function activarPantalla(idPantalla) {
+      cerrarModalesSinHistorial();
+
+      document.querySelectorAll(".pantalla").forEach(function(pantalla) {
+        pantalla.classList.remove("activa");
+      });
+
+      const pantallaSeleccionada =
+        document.getElementById(idPantalla);
+
+      if (!pantallaSeleccionada) {
+        document.getElementById("inicio").classList.add("activa");
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      pantallaSeleccionada.classList.add("activa");
+      window.scrollTo(0, 0);
+    }
+
+    function mostrarPantalla(idPantalla, registrarHistorial = true) {
+      activarPantalla(idPantalla);
+
+      if (!registrarHistorial) {
+        return;
+      }
+
+      const ruta = rutasPantallas[idPantalla] || "";
+      const nuevaDireccion = ruta
+        ? "#" + ruta
+        : window.location.pathname;
+
+      const estadoActual =
+        history.state && history.state.pantalla
+          ? history.state.pantalla
+          : "inicio";
+
+      const modalActual =
+        history.state && history.state.modal
+          ? history.state.modal
+          : null;
+
+      if (estadoActual === idPantalla && !modalActual) {
+        return;
+      }
+
+      history.pushState(
+        {
+          pantalla: idPantalla,
+          modal: null
+        },
+        "",
+        nuevaDireccion
+      );
+    }
+
+    function obtenerPantallaDesdeDireccion() {
+      const ruta =
+        window.location.hash.replace("#", "").trim();
+
+      return pantallasPorRuta[ruta] || "inicio";
+    }
+
+    function obtenerPantallaActiva() {
+      const pantallaActiva =
+        document.querySelector(".pantalla.activa");
+
+      return pantallaActiva
+        ? pantallaActiva.id
+        : obtenerPantallaDesdeDireccion();
+    }
+
+    function abrirImagen(archivo, titulo) {
+      const modal =
+        document.getElementById("modal-imagen");
+
+      const imagen =
+        document.getElementById("imagen-ampliada");
+
+      const tituloImagen =
+        document.getElementById("titulo-imagen");
+
+      imagen.src = archivo;
+      imagen.alt = titulo;
+      tituloImagen.textContent = titulo;
+
+      modal.classList.add("activo");
+      document.body.classList.add("modal-abierto");
+
+      history.pushState(
+        {
+          pantalla: obtenerPantallaActiva(),
+          modal: "imagen",
+          archivo: archivo,
+          titulo: titulo
+        },
+        "",
+        window.location.href
+      );
+    }
+
+    function cerrarImagen() {
+      const modal =
+        document.getElementById("modal-imagen");
+
+      if (!modal || !modal.classList.contains("activo")) {
+        return;
+      }
+
+      if (
+        history.state &&
+        history.state.modal === "imagen"
+      ) {
+        history.back();
+        return;
+      }
+
+      cerrarImagenSinHistorial();
+    }
+
+    function abrirVideo(archivo, titulo, portada) {
+      const modal =
+        document.getElementById("modal-video");
+
+      const reproductor =
+        document.getElementById("reproductor-video");
+
+      const tituloVideo =
+        document.getElementById("titulo-video");
+
+      reproductor.src = archivo;
+      tituloVideo.textContent = titulo;
+
+      if (portada) {
+        reproductor.poster = portada;
+      } else {
+        reproductor.removeAttribute("poster");
+      }
+
+      modal.classList.add("activo");
+      document.body.classList.add("modal-abierto");
+
+      reproductor.load();
+
+      history.pushState(
+        {
+          pantalla: obtenerPantallaActiva(),
+          modal: "video",
+          archivo: archivo,
+          titulo: titulo,
+          portada: portada || ""
+        },
+        "",
+        window.location.href
+      );
+
+      const intentoReproduccion =
+        reproductor.play();
+
+      if (intentoReproduccion !== undefined) {
+        intentoReproduccion.catch(function() {
+          /*
+            Si el navegador bloquea la reproducción automática,
+            el usuario puede iniciarla desde los controles.
+          */
+        });
+      }
+    }
+
+    function cerrarVideo() {
+      const modal =
+        document.getElementById("modal-video");
+
+      if (!modal || !modal.classList.contains("activo")) {
+        return;
+      }
+
+      if (
+        history.state &&
+        history.state.modal === "video"
+      ) {
+        history.back();
+        return;
+      }
+
+      cerrarVideoSinHistorial();
+    }
+
+    function restaurarEstado(estado) {
+      const idPantalla =
+        estado && estado.pantalla
+          ? estado.pantalla
+          : obtenerPantallaDesdeDireccion();
+
+      activarPantalla(idPantalla);
+
+      if (!estado || !estado.modal) {
+        return;
+      }
+
+      if (estado.modal === "imagen") {
+        const imagen =
+          document.getElementById("imagen-ampliada");
+
+        imagen.src = estado.archivo || "";
+        imagen.alt = estado.titulo || "Producto";
+
+        document.getElementById("titulo-imagen").textContent =
+          estado.titulo || "Producto";
+
+        document
+          .getElementById("modal-imagen")
+          .classList.add("activo");
+
+        document.body.classList.add("modal-abierto");
+      }
+
+      if (estado.modal === "video") {
+        const reproductor =
+          document.getElementById("reproductor-video");
+
+        reproductor.src = estado.archivo || "";
+
+        if (estado.portada) {
+          reproductor.poster = estado.portada;
+        }
+
+        document.getElementById("titulo-video").textContent =
+          estado.titulo || "Video del producto";
+
+        document
+          .getElementById("modal-video")
+          .classList.add("activo");
+
+        document.body.classList.add("modal-abierto");
+
+        reproductor.load();
+
+        const intentoReproduccion =
+          reproductor.play();
+
+        if (intentoReproduccion !== undefined) {
+          intentoReproduccion.catch(function() {});
+        }
+      }
+    }
+
+    window.addEventListener("popstate", function(evento) {
+      restaurarEstado(evento.state);
+    });
+
+    const pantallaInicial =
+      obtenerPantallaDesdeDireccion();
+
+    history.replaceState(
+      {
+        pantalla: pantallaInicial,
+        modal: null
+      },
+      "",
+      window.location.href
+    );
+
+    activarPantalla(pantallaInicial);
+
+    function cerrarFondo(evento, idModal) {
+      if (evento.target.id !== idModal) {
+        return;
+      }
+
+      if (idModal === "modal-imagen") {
+        cerrarImagen();
+      }
+
+      if (idModal === "modal-video") {
+        cerrarVideo();
+      }
     }
 
     function actualizarModal() {
       const imagenAbierta =
-        document.getElementById("modal-imagen").classList.contains("activo");
+        document
+          .getElementById("modal-imagen")
+          .classList.contains("activo");
 
       const videoAbierto =
-        document.getElementById("modal-video").classList.contains("activo");
+        document
+          .getElementById("modal-video")
+          .classList.contains("activo");
 
       if (!imagenAbierta && !videoAbierto) {
         document.body.classList.remove("modal-abierto");
       }
     }
 
-    document.addEventListener("keydown", evento => {
-      if (evento.key === "Escape") {
+    document.addEventListener("keydown", function(evento) {
+      if (evento.key !== "Escape") {
+        return;
+      }
+
+      const imagenAbierta =
+        document
+          .getElementById("modal-imagen")
+          .classList.contains("activo");
+
+      const videoAbierto =
+        document
+          .getElementById("modal-video")
+          .classList.contains("activo");
+
+      if (imagenAbierta) {
         cerrarImagen();
+      } else if (videoAbierto) {
         cerrarVideo();
       }
     });
