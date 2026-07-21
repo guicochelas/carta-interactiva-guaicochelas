@@ -1,35 +1,23 @@
 from pathlib import Path
 
-source = Path("/mnt/data/index-guaicochelas-navegacion-modal-corregida.html")
-output = Path("/mnt/data/index-guaicochelas-diseno-decorado.html")
+source = Path("/mnt/data/index (2).html")
+output = Path("/mnt/data/index-guaicochelas-decorado-correcto.html")
 
 html = source.read_text(encoding="utf-8")
 
-decorative_css = r'''
+decoracion = r'''
     /* =========================================================
-       IDENTIDAD VISUAL GUAICOCHELAS
-       Decoración mexicana contemporánea inspirada en el afiche QR
+       DECORACIÓN VISUAL GUAICOCHELAS
+       Estilo mexicano contemporáneo y paleta oficial
        ========================================================= */
 
     body {
       position: relative;
       overflow-x: hidden;
       background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(212, 247, 179, 0.07),
-          transparent 32%
-        ),
-        radial-gradient(
-          circle at 15% 55%,
-          rgba(255, 51, 0, 0.045),
-          transparent 25%
-        ),
-        radial-gradient(
-          circle at 85% 65%,
-          rgba(212, 247, 179, 0.04),
-          transparent 28%
-        ),
+        radial-gradient(circle at 50% 0%, rgba(212, 247, 179, 0.07), transparent 32%),
+        radial-gradient(circle at 15% 55%, rgba(255, 51, 0, 0.045), transparent 25%),
+        radial-gradient(circle at 85% 65%, rgba(212, 247, 179, 0.04), transparent 28%),
         var(--fondo);
     }
 
@@ -38,8 +26,8 @@ decorative_css = r'''
       position: fixed;
       inset: 0;
       z-index: -2;
-      opacity: 0.24;
       pointer-events: none;
+      opacity: 0.18;
       background-image:
         linear-gradient(
           45deg,
@@ -57,31 +45,15 @@ decorative_css = r'''
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 1100;
+      z-index: 1200;
       height: 10px;
       pointer-events: none;
       background:
-        linear-gradient(
-          135deg,
-          var(--rojo) 25%,
-          transparent 25%
-        ) -5px 0 / 10px 10px,
-        linear-gradient(
-          225deg,
-          var(--rojo) 25%,
-          transparent 25%
-        ) -5px 0 / 10px 10px,
-        linear-gradient(
-          315deg,
-          var(--rojo) 25%,
-          transparent 25%
-        ) 0 0 / 10px 10px,
-        linear-gradient(
-          45deg,
-          var(--rojo) 25%,
-          transparent 25%
-        ) 0 0 / 10px 10px;
-      filter: drop-shadow(0 -2px 5px rgba(255, 51, 0, 0.28));
+        linear-gradient(135deg, var(--rojo) 25%, transparent 25%) -5px 0 / 10px 10px,
+        linear-gradient(225deg, var(--rojo) 25%, transparent 25%) -5px 0 / 10px 10px,
+        linear-gradient(315deg, var(--rojo) 25%, transparent 25%) 0 0 / 10px 10px,
+        linear-gradient(45deg, var(--rojo) 25%, transparent 25%) 0 0 / 10px 10px;
+      filter: drop-shadow(0 -2px 5px rgba(255, 51, 0, 0.25));
     }
 
     .pantalla {
@@ -95,9 +67,9 @@ decorative_css = r'''
       content: "";
       position: fixed;
       z-index: -1;
-      width: 74px;
-      height: 74px;
-      opacity: 0.75;
+      width: 68px;
+      height: 68px;
+      opacity: 0.72;
       pointer-events: none;
     }
 
@@ -138,13 +110,13 @@ decorative_css = r'''
       margin: 0 auto 18px;
       background:
         radial-gradient(circle, var(--rojo) 0 4px, transparent 5px)
-          center / 22px 10px repeat-x;
+        center / 22px 10px repeat-x;
       opacity: 0.9;
     }
 
     #inicio .contenido {
       padding: 24px 18px 28px;
-      border: 1px solid rgba(212, 247, 179, 0.18);
+      border: 1px solid rgba(212, 247, 179, 0.2);
       border-radius: 28px;
       background:
         linear-gradient(
@@ -188,16 +160,10 @@ decorative_css = r'''
       height: 3px;
       border-radius: 999px;
       background: var(--verde);
-      opacity: 0.9;
     }
 
-    h2::before {
-      left: -18px;
-    }
-
-    h2::after {
-      right: -18px;
-    }
+    h2::before { left: -18px; }
+    h2::after { right: -18px; }
 
     .eslogan {
       position: relative;
@@ -242,13 +208,6 @@ decorative_css = r'''
       transform: translateX(110%);
     }
 
-    .boton-secundario,
-    .boton-volver {
-      box-shadow:
-        inset 0 0 0 1px rgba(1, 26, 30, 0.2),
-        0 8px 20px rgba(0, 0, 0, 0.18);
-    }
-
     .categorias {
       gap: 16px;
     }
@@ -259,12 +218,12 @@ decorative_css = r'''
       min-height: 72px;
       padding-left: 26px;
       overflow: hidden;
-      border: 1px solid rgba(212, 247, 179, 0.28);
+      border: 1px solid rgba(212, 247, 179, 0.3);
       background:
         linear-gradient(
           135deg,
-          rgba(212, 247, 179, 0.96),
-          rgba(212, 247, 179, 0.84)
+          rgba(212, 247, 179, 0.97),
+          rgba(212, 247, 179, 0.86)
         );
       box-shadow:
         0 12px 26px rgba(0, 0, 0, 0.25),
@@ -295,15 +254,6 @@ decorative_css = r'''
       color: var(--rojo);
       font-size: 2rem;
       font-weight: 800;
-      line-height: 1;
-    }
-
-    .categoria:hover,
-    .categoria:focus {
-      border-color: var(--rojo);
-      box-shadow:
-        0 14px 30px rgba(255, 51, 0, 0.16),
-        inset 0 1px 0 rgba(255, 255, 255, 0.55);
     }
 
     .titulo-seccion {
@@ -320,7 +270,6 @@ decorative_css = r'''
           rgba(255, 51, 0, 0.08),
           rgba(212, 247, 179, 0.06)
         );
-      box-shadow: inset 0 0 20px rgba(212, 247, 179, 0.025);
     }
 
     .titulo-seccion::before,
@@ -335,13 +284,8 @@ decorative_css = r'''
       opacity: 0.7;
     }
 
-    .titulo-seccion::before {
-      left: -19px;
-    }
-
-    .titulo-seccion::after {
-      right: -19px;
-    }
+    .titulo-seccion::before { left: -19px; }
+    .titulo-seccion::after { right: -19px; }
 
     .nota-categoria {
       position: relative;
@@ -369,6 +313,10 @@ decorative_css = r'''
       box-shadow:
         0 14px 32px rgba(0, 0, 0, 0.27),
         inset 0 1px 0 rgba(255, 255, 255, 0.035);
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .tarjeta-producto::before {
@@ -399,25 +347,6 @@ decorative_css = r'''
       box-shadow:
         0 18px 38px rgba(0, 0, 0, 0.31),
         0 0 0 1px rgba(255, 51, 0, 0.08);
-    }
-
-    .imagen-producto {
-      filter: saturate(1.04) contrast(1.02);
-    }
-
-    .indicador-ampliar {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(5px);
-    }
-
-    .aviso-imagen {
-      background:
-        linear-gradient(
-          90deg,
-          rgba(212, 247, 179, 0.035),
-          rgba(212, 247, 179, 0.085),
-          rgba(212, 247, 179, 0.035)
-        );
     }
 
     .nombre-producto {
@@ -464,22 +393,6 @@ decorative_css = r'''
       color: var(--verde);
     }
 
-    .red-social {
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
-    }
-
-    .red-social:hover,
-    .red-social:focus {
-      transform: translateY(-3px) rotate(-3deg) scale(1.05);
-      border-color: var(--rojo);
-      box-shadow:
-        0 10px 24px rgba(255, 51, 0, 0.2),
-        0 0 0 4px rgba(212, 247, 179, 0.06);
-    }
-
     .contenedor-modal {
       position: relative;
       background:
@@ -521,7 +434,7 @@ decorative_css = r'''
       .pantalla::after {
         width: 48px;
         height: 48px;
-        opacity: 0.55;
+        opacity: 0.52;
       }
 
       .pantalla::before {
@@ -548,13 +461,8 @@ decorative_css = r'''
         width: 22px;
       }
 
-      h2::before {
-        left: -8px;
-      }
-
-      h2::after {
-        right: -8px;
-      }
+      h2::before { left: -8px; }
+      h2::after { right: -8px; }
 
       .precio-producto {
         display: inline-block;
@@ -562,12 +470,15 @@ decorative_css = r'''
     }
 '''
 
-marker = "  </style>"
-if marker not in html:
-    raise ValueError("No se encontró la etiqueta de cierre de estilos.")
+if "</style>" not in html:
+    raise ValueError("El archivo no contiene la etiqueta </style>.")
 
-html = html.replace(marker, decorative_css + "\n" + marker, 1)
-
+html = html.replace("</style>", decoracion + "\n  </style>", 1)
 output.write_text(html, encoding="utf-8")
 
-print(f"Archivo creado: {output}")
+# Verificación básica para garantizar que el archivo final sea HTML real.
+contenido_final = output.read_text(encoding="utf-8")
+assert contenido_final.lstrip().startswith("<!DOCTYPE html>")
+assert "from pathlib import Path" not in contenido_final
+
+print(f"Archivo HTML correcto creado: {output}")
