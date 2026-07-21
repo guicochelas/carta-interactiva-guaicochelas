@@ -154,13 +154,31 @@
     }
 
     .enlace-ubicacion {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       color: var(--verde);
       text-decoration: none;
       font-weight: 700;
       transition:
         color 0.2s ease,
         transform 0.2s ease;
+    }
+
+    .icono-ubicacion {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 30px;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+    }
+
+    .enlace-ubicacion span {
+      display: block;
+      text-align: left;
+      line-height: 1.35;
     }
 
     .enlace-ubicacion:hover,
@@ -1309,8 +1327,17 @@
           rel="noopener noreferrer"
           class="enlace-ubicacion"
         >
-          📍 Carrera 4 # 04-80, Barrio San Carlos<br>
-          Sandoná, Nariño
+          <img
+            src="ubicacion.png"
+            alt=""
+            class="icono-ubicacion"
+            aria-hidden="true"
+          >
+
+          <span>
+            Carrera 4 # 04-80, Barrio San Carlos<br>
+            Sandoná, Nariño
+          </span>
         </a>
       </p>
 
