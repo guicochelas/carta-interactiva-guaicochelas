@@ -1069,6 +1069,209 @@
       }
     }
 
+  
+    /* =========================================================
+       REFINAMIENTOS FUNCIONALES E INGENIERÍA DE MENÚ
+       ========================================================= */
+
+    .horario-local {
+      margin: 14px 0 0;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .horario-local strong {
+      color: var(--verde);
+    }
+
+    .producto-destacado {
+      border: 2px solid var(--rojo);
+      box-shadow:
+        0 18px 42px rgba(0, 0, 0, 0.34),
+        0 0 0 5px rgba(255, 51, 0, 0.06);
+    }
+
+    .producto-destacado::after {
+      content: "⭐ RECOMENDADO";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 4;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--rojo);
+      color: var(--blanco);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.26);
+    }
+
+    .producto-destacado .imagen-producto {
+      height: 300px;
+    }
+
+    .navegacion-flotante {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      z-index: 900;
+      width: min(calc(100% - 24px), 620px);
+      display: none;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 7px;
+      padding: 8px;
+      transform: translateX(-50%);
+      border: 1px solid rgba(212, 247, 179, 0.28);
+      border-radius: 18px;
+      background: rgba(1, 26, 30, 0.94);
+      box-shadow:
+        0 14px 34px rgba(0, 0, 0, 0.42),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(10px);
+    }
+
+    body.en-productos .navegacion-flotante {
+      display: grid;
+    }
+
+    .nav-flotante-boton {
+      min-height: 46px;
+      padding: 7px 4px;
+      border: 1px solid rgba(212, 247, 179, 0.22);
+      border-radius: 12px;
+      background: rgba(212, 247, 179, 0.08);
+      color: var(--verde);
+      font-size: 0.76rem;
+      font-weight: 800;
+      line-height: 1.1;
+      cursor: pointer;
+    }
+
+    .nav-flotante-boton:hover,
+    .nav-flotante-boton:focus,
+    .nav-flotante-boton.activo {
+      background: var(--verde);
+      color: var(--fondo);
+      border-color: var(--verde);
+    }
+
+    .boton-whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 94px;
+      z-index: 950;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--verde);
+      border-radius: 50%;
+      background: #25D366;
+      color: #FFFFFF;
+      font-size: 1.7rem;
+      text-decoration: none;
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.35),
+        0 0 0 5px rgba(37, 211, 102, 0.1);
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .boton-whatsapp:hover,
+    .boton-whatsapp:focus {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow:
+        0 16px 34px rgba(0, 0, 0, 0.4),
+        0 0 0 7px rgba(37, 211, 102, 0.13);
+    }
+
+
+    .logo-whatsapp {
+      width: 70%;
+      height: 70%;
+      display: block;
+      object-fit: contain;
+    }
+
+    .texto-whatsapp {
+      position: absolute;
+      right: 68px;
+      width: max-content;
+      max-width: 190px;
+      padding: 8px 11px;
+      border-radius: 12px;
+      background: rgba(1, 26, 30, 0.95);
+      color: var(--verde);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.2;
+      border: 1px solid rgba(212, 247, 179, 0.22);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .boton-whatsapp:hover .texto-whatsapp,
+    .boton-whatsapp:focus .texto-whatsapp {
+      opacity: 1;
+    }
+
+    .boton-subir {
+      position: fixed;
+      right: 22px;
+      bottom: 164px;
+      z-index: 940;
+      width: 46px;
+      height: 46px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--verde);
+      border-radius: 50%;
+      background: rgba(1, 26, 30, 0.94);
+      color: var(--verde);
+      font-size: 1.2rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    body.en-productos .boton-subir {
+      display: flex;
+    }
+
+    @media (max-width: 540px) {
+      .navegacion-flotante {
+        bottom: 12px;
+      }
+
+      .nav-flotante-boton {
+        font-size: 0.69rem;
+      }
+
+      .boton-whatsapp {
+        right: 12px;
+        bottom: 84px;
+        width: 54px;
+        height: 54px;
+      }
+
+      .boton-subir {
+        right: 16px;
+        bottom: 148px;
+        width: 42px;
+        height: 42px;
+      }
+
+      .producto-destacado .imagen-producto {
+        height: 260px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1109,6 +1312,12 @@
           📍 Carrera 4 # 04-80, Barrio San Carlos<br>
           Sandoná, Nariño
         </a>
+      </p>
+
+      <p class="horario-local">
+        <strong>🕒 Horario:</strong><br>
+        Jueves a domingo y festivos<br>
+        4:00 p. m. – 11:30 p. m.
       </p>
 
       <div class="redes-sociales">
@@ -1387,7 +1596,7 @@
       <h3 class="titulo-seccion">🍺 Micheladas granizadas</h3>
 
       <div class="lista-productos">
-        <article class="tarjeta-producto">
+        <article class="tarjeta-producto ${producto.destacado ? "producto-destacado" : ""}">
           <div class="contenedor-imagen-producto" onclick="abrirImagen('michelada-granizada.jpg','Michelada granizada')">
             <img src="michelada-granizada.jpg" alt="Michelada granizada" class="imagen-producto" loading="lazy">
             <span class="indicador-ampliar">🔍 Ver completa</span>
@@ -1490,6 +1699,76 @@
     </div>
   </section>
 
+
+  <nav
+    id="navegacion-flotante"
+    class="navegacion-flotante"
+    aria-label="Navegación rápida por categorías"
+  >
+    <button
+      type="button"
+      class="nav-flotante-boton"
+      data-pantalla="productos-micheladas"
+      onclick="mostrarPantalla('productos-micheladas')"
+    >
+      🍺<br>Micheladas
+    </button>
+
+    <button
+      type="button"
+      class="nav-flotante-boton"
+      data-pantalla="productos-cocteles"
+      onclick="mostrarPantalla('productos-cocteles')"
+    >
+      🍹<br>Cócteles
+    </button>
+
+    <button
+      type="button"
+      class="nav-flotante-boton"
+      data-pantalla="productos-mangomania"
+      onclick="mostrarPantalla('productos-mangomania')"
+    >
+      🥭<br>Mangomanía
+    </button>
+
+    <button
+      type="button"
+      class="nav-flotante-boton"
+      data-pantalla="productos-sodas"
+      onclick="mostrarPantalla('productos-sodas')"
+    >
+      🥤<br>Sodas
+    </button>
+  </nav>
+
+  <button
+    type="button"
+    class="boton-subir"
+    aria-label="Volver arriba"
+    onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+  >
+    ↑
+  </button>
+
+  <a
+    class="boton-whatsapp"
+    href="https://wa.me/573168177611?text=Hola%20GuaicoChelas%2C%20quiero%20consultar%20sobre%20la%20carta."
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Consultar por WhatsApp"
+  >
+    <img
+      src="Logo-Whatsapp.png"
+      alt="WhatsApp"
+      class="logo-whatsapp"
+    >
+
+    <span class="texto-whatsapp">
+      Consultar o hacer pedido
+    </span>
+  </a>
+
   <div id="modal-imagen" class="modal" onclick="cerrarFondo(event,'modal-imagen')">
     <div class="contenedor-modal">
       <div class="encabezado-modal">
@@ -1533,7 +1812,8 @@
         precio: "$15.000",
         descripcion: "Frappe de mango, zumo de limón, mango rayado y cerveza de tu elección.",
         imagen: "michelada-green.jpg",
-        video: "michelada-green.mp4"
+        video: "michelada-green.mp4",
+        destacado: true
       },
       {
         nombre: "Michelada en las rocas",
@@ -1562,21 +1842,87 @@
     ];
 
     const cocteles = [
-      { nombre: "Tequila Sunrise", precio: "$15.000" },
-      { nombre: "Maracuyá", precio: "$15.000" },
-      { nombre: "Coco Loco", precio: "$15.000" },
-      { nombre: "Mango Biche", precio: "$15.000", imagen: "Coctel-Granizado-Mango-Biche.png" },
-      { nombre: "Manzana Verde", precio: "$15.000", imagen: "Coctel-Granizado-Manzana-Verde.png" },
-      { nombre: "Bon Bon Bum", precio: "$15.000" },
-      { nombre: "Sandía", precio: "$15.000" },
-      { nombre: "Margarita", precio: "$15.000" },
-      { nombre: "Blueberry", precio: "$15.000" },
-      { nombre: "Smirnoff Lulo", precio: "$15.000", imagen: "Coctel-Granizado-Smirnoff-Lulo.png" },
-      { nombre: "Tussi", precio: "$15.000" },
-      { nombre: "Piña Colada", precio: "$15.000", imagen: "Coctel-Granizado-Piña-Colada.jpg" },
-      { nombre: "Baileys Whisky", precio: "$15.000", imagen: "Coctel-Granizado-Baileys-Whisky.png" },
-      { nombre: "Crema de Maracuyá", precio: "$15.000" },
-      { nombre: "Fresas con Crema", precio: "$15.000" }
+      {
+        nombre: "Tequila Sunrise",
+        precio: "$15.000",
+        descripcion: "Un granizado vibrante, cítrico y refrescante, ideal para quienes disfrutan sabores intensos y coloridos."
+      },
+      {
+        nombre: "Maracuyá",
+        precio: "$15.000",
+        descripcion: "Tropical, aromático y ligeramente ácido, con el sabor inconfundible de la maracuyá."
+      },
+      {
+        nombre: "Coco Loco",
+        precio: "$15.000",
+        descripcion: "Cremoso, tropical y suave, perfecto para disfrutar lentamente y dejarse llevar por su sabor."
+      },
+      {
+        nombre: "Mango Biche",
+        precio: "$15.000",
+        descripcion: "Refrescante y atrevido, con el equilibrio perfecto entre lo ácido, lo tropical y lo dulce.",
+        imagen: "Coctel-Granizado-Mango-Biche.png",
+        destacado: true
+      },
+      {
+        nombre: "Manzana Verde",
+        precio: "$15.000",
+        descripcion: "Fresco, ácido y frutal, con un sabor intenso que despierta el paladar.",
+        imagen: "Coctel-Granizado-Manzana-Verde.png"
+      },
+      {
+        nombre: "Bon Bon Bum",
+        precio: "$15.000",
+        descripcion: "Dulce, divertido y lleno de color, inspirado en uno de los sabores más recordados."
+      },
+      {
+        nombre: "Sandía",
+        precio: "$15.000",
+        descripcion: "Ligero, dulce y muy refrescante, perfecto para una tarde cálida."
+      },
+      {
+        nombre: "Margarita",
+        precio: "$15.000",
+        descripcion: "Cítrica, fresca y equilibrada, con ese toque clásico que nunca pasa de moda."
+      },
+      {
+        nombre: "Blueberry",
+        precio: "$15.000",
+        descripcion: "Frutal, dulce y ligeramente ácido, con un color intenso y un sabor diferente."
+      },
+      {
+        nombre: "Smirnoff Lulo",
+        precio: "$15.000",
+        descripcion: "Una combinación tropical, cítrica y refrescante, con el carácter especial del lulo.",
+        imagen: "Coctel-Granizado-Smirnoff-Lulo.png"
+      },
+      {
+        nombre: "Tussi",
+        precio: "$15.000",
+        descripcion: "Colorido, llamativo y con un perfil dulce que convierte cada sorbo en una experiencia."
+      },
+      {
+        nombre: "Piña Colada",
+        precio: "$15.000",
+        descripcion: "Cremosa, tropical y refrescante, con una combinación suave de coco y piña.",
+        imagen: "Coctel-Granizado-Piña-Colada.jpg"
+      },
+      {
+        nombre: "Baileys Whisky",
+        precio: "$15.000",
+        descripcion: "Cremoso, intenso y elegante, ideal para quienes prefieren sabores profundos y suaves.",
+        imagen: "Coctel-Granizado-Baileys-Whisky.png"
+      },
+      {
+        nombre: "Crema de Maracuyá",
+        precio: "$15.000",
+        descripcion: "Cremosa y tropical, con el contraste perfecto entre dulzura y acidez."
+      },
+      {
+        nombre: "Fresas con Crema",
+        precio: "$15.000",
+        descripcion: "Dulce, cremoso y delicado, inspirado en uno de los postres más irresistibles."
+      }
     ];
 
     const mangomania = [
@@ -1589,7 +1935,8 @@
         nombre: "Frappe de mango",
         precio: "$8.000",
         descripcion: "Refrescante frappe de mango biche, preparado con mango verde y servido bien frío.",
-        imagen: "Frape-Mango-Biche.jpg"
+        imagen: "Frape-Mango-Biche.jpg",
+        destacado: true
       },
       {
         nombre: "Frappe de maracumango",
@@ -1627,12 +1974,37 @@
     ];
 
     const sodas = [
-      { nombre: "Bon Bon Bum", precio: "$12.000" },
-      { nombre: "Kiwi", precio: "$12.000" },
-      { nombre: "Mango Biche", precio: "$12.000" },
-      { nombre: "Manzana Verde", precio: "$12.000" },
-      { nombre: "Limonada Cerezada", precio: "$12.000" },
-      { nombre: "Maracuyá", precio: "$12.000" }
+      {
+        nombre: "Bon Bon Bum",
+        precio: "$12.000",
+        descripcion: "Dulce, divertida y refrescante, con un sabor que despierta recuerdos."
+      },
+      {
+        nombre: "Kiwi",
+        precio: "$12.000",
+        descripcion: "Fresca, frutal y ligeramente ácida, ideal para quienes buscan algo diferente.",
+        destacado: true
+      },
+      {
+        nombre: "Mango Biche",
+        precio: "$12.000",
+        descripcion: "Tropical y refrescante, con el contraste irresistible entre lo ácido y lo dulce."
+      },
+      {
+        nombre: "Manzana Verde",
+        precio: "$12.000",
+        descripcion: "Intensa, fresca y frutal, con un perfil ácido que despierta el paladar."
+      },
+      {
+        nombre: "Limonada Cerezada",
+        precio: "$12.000",
+        descripcion: "Cítrica, dulce y refrescante, con un toque de cereza lleno de color."
+      },
+      {
+        nombre: "Maracuyá",
+        precio: "$12.000",
+        descripcion: "Aromática, tropical y ligeramente ácida, perfecta para refrescarse sin alcohol."
+      }
     ];
 
     function crearTarjeta(producto) {
@@ -1783,6 +2155,24 @@
       }
 
       pantallaSeleccionada.classList.add("activa");
+
+      const esPantallaProductos =
+        idPantalla.startsWith("productos-");
+
+      document.body.classList.toggle(
+        "en-productos",
+        esPantallaProductos
+      );
+
+      document
+        .querySelectorAll(".nav-flotante-boton")
+        .forEach(function(boton) {
+          boton.classList.toggle(
+            "activo",
+            boton.dataset.pantalla === idPantalla
+          );
+        });
+
       window.scrollTo(0, 0);
     }
 
