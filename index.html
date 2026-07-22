@@ -1444,6 +1444,78 @@
       .logo-whatsapp { width: 30px; height: 30px; flex-basis: 30px; }
     }
 
+  
+    /* CABECERAS VISUALES DE CATEGORÍA Y GALERÍAS */
+    .cabecera-visual-categoria {
+      margin: 0 0 20px;
+      overflow: hidden;
+      border: 1px solid rgba(212, 247, 179, 0.28);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.045);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+      text-align: left;
+    }
+
+    .cabecera-visual-categoria .contenedor-imagen-producto {
+      border-radius: 0;
+    }
+
+    .cabecera-visual-categoria .imagen-producto {
+      height: 300px;
+    }
+
+    .cabecera-visual-contenido {
+      padding: 18px;
+    }
+
+    .cabecera-visual-titulo {
+      margin: 0;
+      color: var(--blanco);
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .cabecera-visual-texto {
+      margin: 8px 0 0;
+      color: var(--verde);
+      line-height: 1.45;
+    }
+
+    .galeria-producto {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 8px;
+      background: rgba(212, 247, 179, 0.04);
+    }
+
+    .galeria-producto .contenedor-imagen-producto {
+      border-radius: 12px;
+    }
+
+    .galeria-producto .imagen-producto {
+      height: 210px;
+      border-radius: 12px;
+    }
+
+    .subcategoria-cocteles {
+      margin-top: 34px;
+    }
+
+    @media (max-width: 520px) {
+      .cabecera-visual-categoria .imagen-producto {
+        height: 235px;
+      }
+
+      .galeria-producto {
+        grid-template-columns: 1fr;
+      }
+
+      .galeria-producto .imagen-producto {
+        height: 230px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1746,7 +1818,7 @@
           class="boton categoria"
           onclick="mostrarPantalla('productos-cocteles')"
         >
-          🍹 Cócteles granizados
+          🍹 Cócteles
         </button>
 
         <button
@@ -1847,16 +1919,99 @@
 
   <section id="productos-cocteles" class="pantalla pantalla-productos">
     <div class="contenido-productos">
-      <h2>Cócteles granizados</h2>
-      <p class="texto-categorias">Sabores intensos y refrescantes</p>
+      <h2>Cócteles</h2>
+      <p class="texto-categorias">Sabores intensos, refrescantes y cremosos</p>
 
-      <p class="nota-categoria">
-        Todos nuestros cócteles vienen con jeringa de licor.
-      </p>
+      <h3 class="titulo-seccion">🍹 Cócteles granizados</h3>
 
-      <div class="lista-productos" id="lista-cocteles"></div>
+      <article class="cabecera-visual-categoria">
+        <div
+          class="contenedor-imagen-producto"
+          onclick="abrirImagen(
+            'Coctel-Granizado-Manzana-Verde.jpg',
+            'Cócteles granizados'
+          )"
+        >
+          <img
+            src="Coctel-Granizado-Manzana-Verde.jpg"
+            alt="Cóctel granizado de manzana verde"
+            class="imagen-producto"
+            loading="lazy"
+          >
+          <span class="indicador-ampliar">Toca para ampliar</span>
+        </div>
 
-      <button class="boton boton-volver" onclick="mostrarPantalla('menu')">← Volver a categorías</button>
+        <p class="aviso-imagen">
+          Imagen de referencia. La presentación del producto puede variar ligeramente.
+        </p>
+
+        <div class="cabecera-visual-contenido">
+          <h4 class="cabecera-visual-titulo">Cócteles granizados</h4>
+
+          <p class="cabecera-visual-texto">
+            Refrescantes, coloridos y llenos de sabor. Todos incluyen
+            jeringa de licor.
+          </p>
+
+          <button
+            type="button"
+            class="boton-video"
+            onclick="abrirVideo(
+              'Cocteles-Granizados.mp4',
+              'Cócteles granizados',
+              'Coctel-Granizado-Manzana-Verde.jpg'
+            )"
+          >
+            ▶ Ver video de la categoría
+          </button>
+        </div>
+      </article>
+
+      <div class="lista-productos" id="lista-cocteles-granizados"></div>
+
+      <div class="subcategoria-cocteles">
+        <h3 class="titulo-seccion">🥥 Cócteles cremosos</h3>
+
+        <article class="cabecera-visual-categoria">
+          <div
+            class="contenedor-imagen-producto"
+            onclick="abrirImagen(
+              'Coctel-Cremoso-Piña-Colada.jpeg',
+              'Cócteles cremosos'
+            )"
+          >
+            <img
+              src="Coctel-Cremoso-Piña-Colada.jpeg"
+              alt="Cóctel cremoso Piña Colada"
+              class="imagen-producto"
+              loading="lazy"
+            >
+            <span class="indicador-ampliar">Toca para ampliar</span>
+          </div>
+
+          <p class="aviso-imagen">
+            Imagen de referencia. La presentación del producto puede variar ligeramente.
+          </p>
+
+          <div class="cabecera-visual-contenido">
+            <h4 class="cabecera-visual-titulo">Cócteles cremosos</h4>
+
+            <p class="cabecera-visual-texto">
+              Texturas suaves, sabores dulces y combinaciones tropicales
+              para disfrutar lentamente.
+            </p>
+          </div>
+        </article>
+
+        <div class="lista-productos" id="lista-cocteles-cremosos"></div>
+      </div>
+
+      <button
+        class="boton boton-volver"
+        onclick="mostrarPantalla('menu')"
+      >
+        ← Volver a categorías
+      </button>
     </div>
   </section>
 
@@ -1876,17 +2031,47 @@
       <h2>Sodas sin alcohol</h2>
       <p class="texto-categorias">Refrescantes y llenas de sabor</p>
 
-      <p class="nota-categoria">
-        Escarchado, zumo de limón, tajín, brocheta dulce,
-        soda y perlas explosivas.
-      </p>
+      <article class="cabecera-visual-categoria">
+        <div
+          class="contenedor-imagen-producto"
+          onclick="abrirImagen(
+            'Soda-Sin-Alcohol.jpg',
+            'Sodas sin alcohol'
+          )"
+        >
+          <img
+            src="Soda-Sin-Alcohol.jpg"
+            alt="Soda sin alcohol"
+            class="imagen-producto"
+            loading="lazy"
+          >
+          <span class="indicador-ampliar">Toca para ampliar</span>
+        </div>
+
+        <p class="aviso-imagen">
+          Imagen de referencia. La presentación del producto puede variar ligeramente.
+        </p>
+
+        <div class="cabecera-visual-contenido">
+          <h4 class="cabecera-visual-titulo">Sodas sin alcohol</h4>
+
+          <p class="cabecera-visual-texto">
+            Escarchado, zumo de limón, tajín, brocheta dulce,
+            soda y perlas explosivas.
+          </p>
+        </div>
+      </article>
 
       <div class="lista-productos" id="lista-sodas"></div>
 
-      <button class="boton boton-volver" onclick="mostrarPantalla('menu')">← Volver a categorías</button>
+      <button
+        class="boton boton-volver"
+        onclick="mostrarPantalla('menu')"
+      >
+        ← Volver a categorías
+      </button>
     </div>
   </section>
-
 
   <nav
     id="navegacion-flotante"
@@ -2029,7 +2214,7 @@
       }
     ];
 
-    const cocteles = [
+    const coctelesGranizados = [
       {
         nombre: "Tequila Sunrise",
         precio: "$15.000",
@@ -2041,22 +2226,14 @@
         descripcion: "Tropical, aromático y ligeramente ácido, con el sabor inconfundible de la maracuyá."
       },
       {
-        nombre: "Coco Loco",
-        precio: "$15.000",
-        descripcion: "Cremoso, tropical y suave, perfecto para disfrutar lentamente y dejarse llevar por su sabor."
-      },
-      {
         nombre: "Mango Biche",
         precio: "$15.000",
-        descripcion: "Refrescante y atrevido, con el equilibrio perfecto entre lo ácido, lo tropical y lo dulce.",
-        imagen: "Coctel-Granizado-Mango-Biche.png",
-        destacado: true
+        descripcion: "Refrescante y atrevido, con el equilibrio perfecto entre lo ácido, lo tropical y lo dulce."
       },
       {
         nombre: "Manzana Verde",
         precio: "$15.000",
-        descripcion: "Fresco, ácido y frutal, con un sabor intenso que despierta el paladar.",
-        imagen: "Coctel-Granizado-Manzana-Verde.png"
+        descripcion: "Fresco, ácido y frutal, con un sabor intenso que despierta el paladar."
       },
       {
         nombre: "Bon Bon Bum",
@@ -2081,25 +2258,30 @@
       {
         nombre: "Smirnoff Lulo",
         precio: "$15.000",
-        descripcion: "Una combinación tropical, cítrica y refrescante, con el carácter especial del lulo.",
-        imagen: "Coctel-Granizado-Smirnoff-Lulo.png"
+        descripcion: "Una combinación tropical, cítrica y refrescante, con el carácter especial del lulo."
       },
       {
         nombre: "Tussi",
         precio: "$15.000",
         descripcion: "Colorido, llamativo y con un perfil dulce que convierte cada sorbo en una experiencia."
+      }
+    ];
+
+    const coctelesCremosos = [
+      {
+        nombre: "Coco Loco",
+        precio: "$15.000",
+        descripcion: "Cremoso, tropical y suave, perfecto para disfrutar lentamente y dejarse llevar por su sabor."
       },
       {
         nombre: "Piña Colada",
         precio: "$15.000",
-        descripcion: "Cremosa, tropical y refrescante, con una combinación suave de coco y piña.",
-        imagen: "Coctel-Granizado-Piña-Colada.jpg"
+        descripcion: "Cremosa, tropical y refrescante, con una combinación suave de coco y piña."
       },
       {
         nombre: "Baileys Whisky",
         precio: "$15.000",
-        descripcion: "Cremoso, intenso y elegante, ideal para quienes prefieren sabores profundos y suaves.",
-        imagen: "Coctel-Granizado-Baileys-Whisky.png"
+        descripcion: "Cremoso, intenso y elegante, ideal para quienes prefieren sabores profundos y suaves."
       },
       {
         nombre: "Crema de Maracuyá",
@@ -2117,7 +2299,11 @@
       {
         nombre: "Mango biche rayado",
         precio: "$5.000",
-        descripcion: "Mango biche rayado, dulce, agridulce o ácido. Lo acompañamos con nuestros dulces y chamoy artesanales."
+        descripcion: "Mango biche rayado en versión ácida o agridulce, acompañado con nuestros dulces y chamoy artesanales.",
+        imagenes: [
+          "Mango-Biche-Rayado-Acido.jpeg",
+          "Mango-Biche-Rayado-Agridulce.jpeg"
+        ]
       },
       {
         nombre: "Frappe de mango",
@@ -2196,6 +2382,31 @@
     ];
 
     function crearTarjeta(producto) {
+      const galeria = producto.imagenes
+        ? `
+          <div class="galeria-producto">
+            ${producto.imagenes.map((archivo, indice) => `
+              <div
+                class="contenedor-imagen-producto"
+                onclick="abrirImagen(
+                  '${archivo}',
+                  '${producto.nombre} ${indice === 0 ? "ácido" : "agridulce"}'
+                )"
+              >
+                <img
+                  src="${archivo}"
+                  alt="${producto.nombre}"
+                  class="imagen-producto"
+                  loading="lazy"
+                >
+                <span class="indicador-ampliar">Toca para ampliar</span>
+              </div>
+            `).join("")}
+          </div>
+          <p class="aviso-imagen">${avisoImagen}</p>
+        `
+        : "";
+
       const imagen = producto.imagen
         ? `
           <div class="contenedor-imagen-producto"
@@ -2267,7 +2478,8 @@
     }
 
     renderizarLista("lista-chelas-casa", chelasCasa);
-    renderizarLista("lista-cocteles", cocteles);
+    renderizarLista("lista-cocteles-granizados", coctelesGranizados);
+    renderizarLista("lista-cocteles-cremosos", coctelesCremosos);
     renderizarLista("lista-mangomania", mangomania);
     renderizarLista("lista-sodas", sodas);
 
