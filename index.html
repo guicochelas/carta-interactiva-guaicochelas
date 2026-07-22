@@ -1579,6 +1579,48 @@
       .nombre-coctel-compacto { font-size: 1rem; }
     }
 
+  
+    /* PRESENTACIONES DE MANGO BICHE RAYADO */
+    .galeria-producto {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      padding: 10px;
+      background: rgba(212, 247, 179, 0.04);
+    }
+
+    .opcion-mango-biche {
+      overflow: hidden;
+      border: 1px solid rgba(212, 247, 179, 0.22);
+      border-radius: 14px;
+      background: rgba(1, 26, 30, 0.68);
+    }
+
+    .opcion-mango-biche .imagen-producto {
+      height: 225px;
+      border-radius: 0;
+    }
+
+    .nombre-opcion-mango {
+      margin: 0;
+      padding: 10px 12px;
+      color: var(--verde);
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-align: center;
+      border-top: 1px solid rgba(212, 247, 179, 0.16);
+    }
+
+    @media (max-width: 520px) {
+      .galeria-producto {
+        grid-template-columns: 1fr;
+      }
+
+      .opcion-mango-biche .imagen-producto {
+        height: 250px;
+      }
+    }
+
   </style>
 </head>
 
@@ -2366,6 +2408,7 @@
         nombre: "Frappe de maracumango",
         precio: "$8.000",
         descripcion: "Mezcla tropical de maracuyá y mango biche en un frappe helado y lleno de sabor.",
+        imagen: "Frappe-De-Maracumango.jpeg",
         video: "Frape-De-Maracumango.mp4"
       },
       {
@@ -2435,24 +2478,40 @@
       const galeria = producto.imagenes
         ? `
           <div class="galeria-producto">
-            ${producto.imagenes.map((archivo, indice) => `
-              <div
-                class="contenedor-imagen-producto"
-                onclick="abrirImagen(
-                  '${archivo}',
-                  '${producto.nombre} ${indice === 0 ? "ácido" : "agridulce"}'
-                )"
-              >
-                <img
-                  src="${archivo}"
-                  alt="${producto.nombre}"
-                  class="imagen-producto"
-                  loading="lazy"
-                >
-                <span class="indicador-ampliar">Toca para ampliar</span>
-              </div>
-            `).join("")}
+            ${producto.imagenes.map((archivo, indice) => {
+              const etiqueta =
+                indice === 0
+                  ? "Mango biche ácido"
+                  : "Mango biche agridulce";
+
+              return `
+                <article class="opcion-mango-biche">
+                  <div
+                    class="contenedor-imagen-producto"
+                    onclick="abrirImagen(
+                      '${archivo}',
+                      '${etiqueta}'
+                    )"
+                  >
+                    <img
+                      src="${archivo}"
+                      alt="${etiqueta}"
+                      class="imagen-producto"
+                      loading="lazy"
+                    >
+                    <span class="indicador-ampliar">
+                      Toca para ampliar
+                    </span>
+                  </div>
+
+                  <p class="nombre-opcion-mango">
+                    ${etiqueta}
+                  </p>
+                </article>
+              `;
+            }).join("")}
           </div>
+
           <p class="aviso-imagen">${avisoImagen}</p>
         `
         : "";
@@ -2506,6 +2565,7 @@
 
       return `
         <article class="tarjeta-producto">
+          ${galeria}
           ${imagen}
 
           <div class="informacion-producto">
