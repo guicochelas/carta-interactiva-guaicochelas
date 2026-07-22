@@ -1516,6 +1516,69 @@
       }
     }
 
+  
+    /* LISTA COMPACTA DE CÓCTELES */
+    .lista-cocteles-compacta {
+      margin: 0;
+      padding: 16px 18px;
+      list-style: none;
+      text-align: left;
+      border: 1px dashed rgba(212, 247, 179, 0.35);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(212,247,179,.07), rgba(255,255,255,.02));
+      box-shadow: 0 12px 28px rgba(0,0,0,.22);
+    }
+
+    .item-coctel-compacto {
+      display: grid;
+      grid-template-columns: 12px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 0;
+      border-bottom: 1px dashed rgba(212, 247, 179, 0.22);
+    }
+
+    .item-coctel-compacto:last-child { border-bottom: none; }
+
+    .punto-coctel {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rojo);
+    }
+
+    .nombre-coctel-compacto {
+      color: var(--blanco);
+      font-size: 1.04rem;
+      font-weight: 700;
+    }
+
+    .precio-coctel-compacto {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(255, 51, 0, 0.1);
+      color: var(--rojo);
+      font-size: .95rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .etiqueta-lista-cocteles {
+      margin: 0 0 12px;
+      color: var(--rojo);
+      font-size: 1.05rem;
+      font-weight: 800;
+      text-align: left;
+    }
+
+    @media (max-width: 520px) {
+      .item-coctel-compacto {
+        grid-template-columns: 10px minmax(0, 1fr) auto;
+        gap: 8px;
+      }
+      .nombre-coctel-compacto { font-size: 1rem; }
+    }
+
   </style>
 </head>
 
@@ -1967,7 +2030,8 @@
         </div>
       </article>
 
-      <div class="lista-productos" id="lista-cocteles-granizados"></div>
+      <p class="etiqueta-lista-cocteles">Sabores disponibles:</p>
+      <ul class="lista-cocteles-compacta" id="lista-cocteles-granizados"></ul>
 
       <div class="subcategoria-cocteles">
         <h3 class="titulo-seccion">🥥 Cócteles cremosos</h3>
@@ -2003,7 +2067,8 @@
           </div>
         </article>
 
-        <div class="lista-productos" id="lista-cocteles-cremosos"></div>
+        <p class="etiqueta-lista-cocteles">Opciones disponibles:</p>
+        <ul class="lista-cocteles-compacta" id="lista-cocteles-cremosos"></ul>
       </div>
 
       <button
@@ -2217,81 +2282,66 @@
     const coctelesGranizados = [
       {
         nombre: "Tequila Sunrise",
-        precio: "$15.000",
-        descripcion: "Un granizado vibrante, cítrico y refrescante, ideal para quienes disfrutan sabores intensos y coloridos."
+        precio: "$15.000"
       },
       {
         nombre: "Maracuyá",
-        precio: "$15.000",
-        descripcion: "Tropical, aromático y ligeramente ácido, con el sabor inconfundible de la maracuyá."
+        precio: "$15.000"
       },
       {
         nombre: "Mango Biche",
-        precio: "$15.000",
-        descripcion: "Refrescante y atrevido, con el equilibrio perfecto entre lo ácido, lo tropical y lo dulce."
+        precio: "$15.000"
       },
       {
         nombre: "Manzana Verde",
-        precio: "$15.000",
-        descripcion: "Fresco, ácido y frutal, con un sabor intenso que despierta el paladar."
+        precio: "$15.000"
       },
       {
         nombre: "Bon Bon Bum",
-        precio: "$15.000",
-        descripcion: "Dulce, divertido y lleno de color, inspirado en uno de los sabores más recordados."
+        precio: "$15.000"
       },
       {
         nombre: "Sandía",
-        precio: "$15.000",
-        descripcion: "Ligero, dulce y muy refrescante, perfecto para una tarde cálida."
+        precio: "$15.000"
       },
       {
         nombre: "Margarita",
-        precio: "$15.000",
-        descripcion: "Cítrica, fresca y equilibrada, con ese toque clásico que nunca pasa de moda."
+        precio: "$15.000"
       },
       {
         nombre: "Blueberry",
-        precio: "$15.000",
-        descripcion: "Frutal, dulce y ligeramente ácido, con un color intenso y un sabor diferente."
+        precio: "$15.000"
       },
       {
         nombre: "Smirnoff Lulo",
-        precio: "$15.000",
-        descripcion: "Una combinación tropical, cítrica y refrescante, con el carácter especial del lulo."
+        precio: "$15.000"
       },
       {
         nombre: "Tussi",
-        precio: "$15.000",
-        descripcion: "Colorido, llamativo y con un perfil dulce que convierte cada sorbo en una experiencia."
+        precio: "$15.000"
       }
     ];
 
     const coctelesCremosos = [
       {
         nombre: "Coco Loco",
-        precio: "$15.000",
-        descripcion: "Cremoso, tropical y suave, perfecto para disfrutar lentamente y dejarse llevar por su sabor."
+        precio: "$15.000"
       },
       {
         nombre: "Piña Colada",
-        precio: "$15.000",
-        descripcion: "Cremosa, tropical y refrescante, con una combinación suave de coco y piña."
+        precio: "$15.000"
       },
       {
         nombre: "Baileys Whisky",
-        precio: "$15.000",
-        descripcion: "Cremoso, intenso y elegante, ideal para quienes prefieren sabores profundos y suaves."
+        precio: "$15.000"
       },
       {
         nombre: "Crema de Maracuyá",
-        precio: "$15.000",
-        descripcion: "Cremosa y tropical, con el contraste perfecto entre dulzura y acidez."
+        precio: "$15.000"
       },
       {
         nombre: "Fresas con Crema",
-        precio: "$15.000",
-        descripcion: "Dulce, cremoso y delicado, inspirado en uno de los postres más irresistibles."
+        precio: "$15.000"
       }
     ];
 
@@ -2477,9 +2527,24 @@
         productos.map(crearTarjeta).join("");
     }
 
+    function crearItemCoctel(producto) {
+      return `
+        <li class="item-coctel-compacto">
+          <span class="punto-coctel" aria-hidden="true"></span>
+          <span class="nombre-coctel-compacto">${producto.nombre}</span>
+          <strong class="precio-coctel-compacto">${producto.precio}</strong>
+        </li>
+      `;
+    }
+
+    function renderizarCocteles(id, productos) {
+      document.getElementById(id).innerHTML =
+        productos.map(crearItemCoctel).join("");
+    }
+
     renderizarLista("lista-chelas-casa", chelasCasa);
-    renderizarLista("lista-cocteles-granizados", coctelesGranizados);
-    renderizarLista("lista-cocteles-cremosos", coctelesCremosos);
+    renderizarCocteles("lista-cocteles-granizados", coctelesGranizados);
+    renderizarCocteles("lista-cocteles-cremosos", coctelesCremosos);
     renderizarLista("lista-mangomania", mangomania);
     renderizarLista("lista-sodas", sodas);
 
