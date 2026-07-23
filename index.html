@@ -1621,6 +1621,110 @@
       }
     }
 
+  
+    /* SLIDER VISUAL DE CATEGORÍAS */
+    .slider-categoria {
+      position: relative;
+      overflow: hidden;
+      border-radius: 18px 18px 0 0;
+      background: #000;
+      touch-action: pan-y;
+    }
+
+    .slider-pista {
+      display: flex;
+      transition: transform 0.45s ease;
+      will-change: transform;
+    }
+
+    .slider-diapositiva {
+      position: relative;
+      min-width: 100%;
+      cursor: pointer;
+    }
+
+    .slider-diapositiva img {
+      width: 100%;
+      height: 300px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .slider-etiqueta {
+      position: absolute;
+      left: 14px;
+      bottom: 44px;
+      z-index: 2;
+      padding: 7px 11px;
+      border: 1px solid rgba(212,247,179,.45);
+      border-radius: 999px;
+      background: rgba(1,26,30,.88);
+      color: var(--verde);
+      font-size: .8rem;
+      font-weight: 800;
+      backdrop-filter: blur(6px);
+    }
+
+    .slider-control {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: translateY(-50%);
+      border: 1px solid rgba(212,247,179,.5);
+      border-radius: 50%;
+      background: rgba(1,26,30,.86);
+      color: var(--verde);
+      font-size: 1.35rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .slider-anterior { left: 12px; }
+    .slider-siguiente { right: 12px; }
+
+    .slider-indicadores {
+      position: absolute;
+      left: 50%;
+      bottom: 16px;
+      z-index: 5;
+      display: flex;
+      gap: 7px;
+      transform: translateX(-50%);
+    }
+
+    .slider-punto {
+      width: 9px;
+      height: 9px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+      cursor: pointer;
+    }
+
+    .slider-punto.activo {
+      width: 22px;
+      border-radius: 999px;
+      background: var(--rojo);
+    }
+
+    .slider-ayuda {
+      margin: 8px 0 0;
+      color: rgba(255,255,255,.68);
+      font-size: .76rem;
+      text-align: center;
+    }
+
+    @media (max-width: 520px) {
+      .slider-diapositiva img { height: 235px; }
+      .slider-control { width: 38px; height: 38px; }
+    }
+
   </style>
 </head>
 
@@ -2030,21 +2134,32 @@
       <h3 class="titulo-seccion">🍹 Cócteles granizados</h3>
 
       <article class="cabecera-visual-categoria">
-        <div
-          class="contenedor-imagen-producto"
-          onclick="abrirImagen(
-            'Coctel-Granizado-Manzana-Verde.jpg',
-            'Cócteles granizados'
-          )"
-        >
-          <img
-            src="Coctel-Granizado-Manzana-Verde.jpg"
-            alt="Cóctel granizado de manzana verde"
-            class="imagen-producto"
-            loading="lazy"
-          >
-          <span class="indicador-ampliar">Toca para ampliar</span>
+        <div class="slider-categoria" data-slider="cocteles">
+          <div class="slider-pista">
+            <div class="slider-diapositiva" onclick="abrirImagen('Coctel-Granizado-Manzana-Verde.jpg','Cóctel Manzana Verde')">
+              <img src="Coctel-Granizado-Manzana-Verde.jpg" alt="Cóctel Manzana Verde" loading="lazy">
+              <span class="slider-etiqueta">Manzana Verde</span>
+            </div>
+
+            <div class="slider-diapositiva" onclick="abrirImagen('Coctel-Granizado-Mango-Biche.png','Cóctel Mango Biche')">
+              <img src="Coctel-Granizado-Mango-Biche.png" alt="Cóctel Mango Biche" loading="lazy">
+              <span class="slider-etiqueta">Mango Biche</span>
+            </div>
+
+            <div class="slider-diapositiva" onclick="abrirImagen('Coctel-Granizado-Smirnoff-Lulo.png','Cóctel Smirnoff Lulo')">
+              <img src="Coctel-Granizado-Smirnoff-Lulo.png" alt="Cóctel Smirnoff Lulo" loading="lazy">
+              <span class="slider-etiqueta">Smirnoff Lulo</span>
+            </div>
+          </div>
+
+          <button type="button" class="slider-control slider-anterior" onclick="moverSlider('cocteles',-1,event)" aria-label="Imagen anterior">‹</button>
+          <button type="button" class="slider-control slider-siguiente" onclick="moverSlider('cocteles',1,event)" aria-label="Imagen siguiente">›</button>
+          <div class="slider-indicadores"></div>
         </div>
+
+        <p class="slider-ayuda">
+          Desliza o usa las flechas. Toca una imagen para ampliarla.
+        </p>
 
         <p class="aviso-imagen">
           Imagen de referencia. La presentación del producto puede variar ligeramente.
@@ -2139,21 +2254,22 @@
       <p class="texto-categorias">Refrescantes y llenas de sabor</p>
 
       <article class="cabecera-visual-categoria">
-        <div
-          class="contenedor-imagen-producto"
-          onclick="abrirImagen(
-            'Soda-Sin-Alcohol.jpg',
-            'Sodas sin alcohol'
-          )"
-        >
-          <img
-            src="Soda-Sin-Alcohol.jpg"
-            alt="Soda sin alcohol"
-            class="imagen-producto"
-            loading="lazy"
-          >
-          <span class="indicador-ampliar">Toca para ampliar</span>
+        <div class="slider-categoria" data-slider="sodas">
+          <div class="slider-pista">
+            <div class="slider-diapositiva" onclick="abrirImagen('Soda-Sin-Alcohol.jpg','Sodas sin alcohol')">
+              <img src="Soda-Sin-Alcohol.jpg" alt="Sodas sin alcohol" loading="lazy">
+              <span class="slider-etiqueta">Sodas GuaicoChelas</span>
+            </div>
+          </div>
+
+          <button type="button" class="slider-control slider-anterior" onclick="moverSlider('sodas',-1,event)" aria-label="Imagen anterior">‹</button>
+          <button type="button" class="slider-control slider-siguiente" onclick="moverSlider('sodas',1,event)" aria-label="Imagen siguiente">›</button>
+          <div class="slider-indicadores"></div>
         </div>
+
+        <p class="slider-ayuda">
+          Toca la imagen para ampliarla.
+        </p>
 
         <p class="aviso-imagen">
           Imagen de referencia. La presentación del producto puede variar ligeramente.
@@ -2331,6 +2447,10 @@
         precio: "$15.000"
       },
       {
+        nombre: "Coco Loco",
+        precio: "$15.000"
+      },
+      {
         nombre: "Mango Biche",
         precio: "$15.000"
       },
@@ -2365,10 +2485,6 @@
     ];
 
     const coctelesCremosos = [
-      {
-        nombre: "Coco Loco",
-        precio: "$15.000"
-      },
       {
         nombre: "Piña Colada",
         precio: "$15.000"
@@ -2417,9 +2533,9 @@
         descripcion: "Base de frappe, mango biche rayado, manzana, pera, maracuyá y una bola de helado."
       },
       {
-        nombre: "Soda mango biche",
+        nombre: "Soda Green",
         precio: "$6.000",
-        descripcion: "Refrescante soda de mango con frappe de mango biche artesanal."
+        descripcion: "Refrescante soda con frappe artesanal de mango biche y un toque cítrico lleno de color."
       },
       {
         nombre: "Tentación tropical",
@@ -2975,6 +3091,101 @@
         document.body.classList.remove("modal-abierto");
       }
     }
+
+
+    const estadoSliders = {};
+
+    function inicializarSliders() {
+      document.querySelectorAll(".slider-categoria").forEach(function(slider) {
+        const nombre = slider.dataset.slider;
+        const diapositivas = slider.querySelectorAll(".slider-diapositiva");
+        const indicadores = slider.querySelector(".slider-indicadores");
+
+        estadoSliders[nombre] = {
+          indice: 0,
+          total: diapositivas.length
+        };
+
+        indicadores.innerHTML = "";
+
+        diapositivas.forEach(function(_, indice) {
+          const punto = document.createElement("button");
+          punto.type = "button";
+          punto.className = "slider-punto" + (indice === 0 ? " activo" : "");
+          punto.setAttribute("aria-label", "Ver imagen " + (indice + 1));
+          punto.onclick = function(evento) {
+            evento.stopPropagation();
+            irASlider(nombre, indice);
+          };
+          indicadores.appendChild(punto);
+        });
+
+        if (diapositivas.length <= 1) {
+          slider.querySelectorAll(".slider-control").forEach(function(control) {
+            control.style.display = "none";
+          });
+        }
+
+        let inicioX = 0;
+
+        slider.addEventListener("touchstart", function(evento) {
+          inicioX = evento.changedTouches[0].clientX;
+        }, { passive: true });
+
+        slider.addEventListener("touchend", function(evento) {
+          const finX = evento.changedTouches[0].clientX;
+          const diferencia = inicioX - finX;
+
+          if (Math.abs(diferencia) >= 45) {
+            moverSlider(nombre, diferencia > 0 ? 1 : -1);
+          }
+        }, { passive: true });
+      });
+    }
+
+    function actualizarSlider(nombre) {
+      const slider = document.querySelector(`[data-slider="${nombre}"]`);
+      const estado = estadoSliders[nombre];
+
+      if (!slider || !estado) {
+        return;
+      }
+
+      slider.querySelector(".slider-pista").style.transform =
+        `translateX(-${estado.indice * 100}%)`;
+
+      slider.querySelectorAll(".slider-punto").forEach(function(punto, indice) {
+        punto.classList.toggle("activo", indice === estado.indice);
+      });
+    }
+
+    function irASlider(nombre, indice) {
+      if (!estadoSliders[nombre]) {
+        return;
+      }
+
+      estadoSliders[nombre].indice = indice;
+      actualizarSlider(nombre);
+    }
+
+    function moverSlider(nombre, direccion, evento) {
+      if (evento) {
+        evento.stopPropagation();
+      }
+
+      const estado = estadoSliders[nombre];
+
+      if (!estado || estado.total <= 1) {
+        return;
+      }
+
+      estado.indice =
+        (estado.indice + direccion + estado.total) % estado.total;
+
+      actualizarSlider(nombre);
+    }
+
+    inicializarSliders();
 
     document.addEventListener("keydown", function(evento) {
       if (evento.key !== "Escape") {
