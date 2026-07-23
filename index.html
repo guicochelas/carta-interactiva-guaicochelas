@@ -1725,6 +1725,48 @@
       .slider-control { width: 38px; height: 38px; }
     }
 
+  
+    .pie-creditos {
+      margin-top: 20px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(212, 247, 179, 0.16);
+      line-height: 1.35;
+    }
+
+    .pie-creditos p {
+      margin: 2px 0;
+    }
+
+    .pie-creditos p:first-child {
+      color: var(--verde);
+      font-weight: 700;
+    }
+
+    .pie-creditos p:last-child {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.78rem;
+    }
+
+  
+    /* SLIDER DE MANGO BICHE EN MANGOMANÍA */
+    .slider-mango-biche {
+      border-radius: 18px 18px 0 0;
+    }
+
+    .slider-mango-biche .slider-diapositiva img {
+      height: 260px;
+    }
+
+    .slider-mango-biche .slider-etiqueta {
+      bottom: 44px;
+    }
+
+    @media (max-width: 520px) {
+      .slider-mango-biche .slider-diapositiva img {
+        height: 240px;
+      }
+    }
+
   </style>
 </head>
 
@@ -1807,7 +1849,10 @@
         </div>
       </div>
 
-      <p class="pie">Carta interactiva oficial</p>
+      <div class="pie pie-creditos">
+        <p>Carta actualizada · Julio de 2026</p>
+        <p>Desarrollada por Orange Nariño S.A.S.</p>
+      </div>
     </section>
   </main>
 
@@ -2507,11 +2552,20 @@
       {
         nombre: "Mango biche rayado",
         precio: "$5.000",
-        descripcion: "Mango biche rayado en versión ácida o agridulce, acompañado con nuestros dulces y chamoy artesanales.",
-        imagenes: [
-          "Mango-Biche-Rayado-Acido.jpeg",
-          "Mango-Biche-Rayado-Agridulce.jpeg"
-        ]
+        descripcion: "Elige tu presentación favorita: ácida o agridulce, acompañada con nuestros dulces y chamoy artesanales.",
+        slider: {
+          nombre: "mango-biche",
+          imagenes: [
+            {
+              archivo: "Mango-Biche-Rayado-Acido.jpeg",
+              etiqueta: "Mango biche ácido"
+            },
+            {
+              archivo: "Mango-Biche-Rayado-Agridulce.jpeg",
+              etiqueta: "Mango biche agridulce"
+            }
+          ]
+        }
       },
       {
         nombre: "Frappe de mango",
@@ -2591,6 +2645,72 @@
     ];
 
     function crearTarjeta(producto) {
+      const sliderProducto = producto.slider
+        ? `
+          <div
+            class="slider-categoria slider-mango-biche"
+            data-slider="${producto.slider.nombre}"
+            aria-label="Galería de ${producto.nombre}"
+          >
+            <div class="slider-pista">
+              ${producto.slider.imagenes.map(opcion => `
+                <div
+                  class="slider-diapositiva"
+                  onclick="abrirImagen(
+                    '${opcion.archivo}',
+                    '${opcion.etiqueta}'
+                  )"
+                >
+                  <img
+                    src="${opcion.archivo}"
+                    alt="${opcion.etiqueta}"
+                    loading="lazy"
+                  >
+                  <span class="slider-etiqueta">
+                    ${opcion.etiqueta}
+                  </span>
+                </div>
+              `).join("")}
+            </div>
+
+            <button
+              type="button"
+              class="slider-control slider-anterior"
+              onclick="moverSlider(
+                '${producto.slider.nombre}',
+                -1,
+                event
+              )"
+              aria-label="Imagen anterior"
+            >
+              ‹
+            </button>
+
+            <button
+              type="button"
+              class="slider-control slider-siguiente"
+              onclick="moverSlider(
+                '${producto.slider.nombre}',
+                1,
+                event
+              )"
+              aria-label="Imagen siguiente"
+            >
+              ›
+            </button>
+
+            <div class="slider-indicadores"></div>
+          </div>
+
+          <p class="slider-ayuda">
+            Cambia automáticamente cada 5 segundos.
+            También puedes deslizar o usar las flechas.
+          </p>
+
+          <p class="aviso-imagen">${avisoImagen}</p>
+        `
+        : "";
+
       const galeria = producto.imagenes
         ? `
           <div class="galeria-producto">
@@ -2681,6 +2801,7 @@
 
       return `
         <article class="tarjeta-producto">
+          ${sliderProducto}
           ${galeria}
           ${imagen}
 
@@ -3103,7 +3224,8 @@
 
         estadoSliders[nombre] = {
           indice: 0,
-          total: diapositivas.length
+          total: diapositivas.length,
+          temporizador: null
         };
 
         indicadores.innerHTML = "";
@@ -3140,7 +3262,55 @@
             moverSlider(nombre, diferencia > 0 ? 1 : -1);
           }
         }, { passive: true });
+
+        slider.addEventListener("mouseenter", function() {
+          pausarSliderAutomatico(nombre);
+        });
+
+        slider.addEventListener("mouseleave", function() {
+          iniciarSliderAutomatico(nombre);
+        });
+
+        slider.addEventListener("focusin", function() {
+          pausarSliderAutomatico(nombre);
+        });
+
+        slider.addEventListener("focusout", function() {
+          iniciarSliderAutomatico(nombre);
+        });
+
+        iniciarSliderAutomatico(nombre);
       });
+    }
+
+    function iniciarSliderAutomatico(nombre) {
+      const estado = estadoSliders[nombre];
+
+      if (!estado || estado.total <= 1) {
+        return;
+      }
+
+      pausarSliderAutomatico(nombre);
+
+      estado.temporizador = window.setInterval(function() {
+        moverSlider(nombre, 1, null, false);
+      }, 5000);
+    }
+
+    function pausarSliderAutomatico(nombre) {
+      const estado = estadoSliders[nombre];
+
+      if (!estado || !estado.temporizador) {
+        return;
+      }
+
+      window.clearInterval(estado.temporizador);
+      estado.temporizador = null;
+    }
+
+    function reiniciarSliderAutomatico(nombre) {
+      pausarSliderAutomatico(nombre);
+      iniciarSliderAutomatico(nombre);
     }
 
     function actualizarSlider(nombre) {
@@ -3166,9 +3336,15 @@
 
       estadoSliders[nombre].indice = indice;
       actualizarSlider(nombre);
+      reiniciarSliderAutomatico(nombre);
     }
 
-    function moverSlider(nombre, direccion, evento) {
+    function moverSlider(
+      nombre,
+      direccion,
+      evento,
+      reiniciarAutomatico = true
+    ) {
       if (evento) {
         evento.stopPropagation();
       }
@@ -3183,9 +3359,23 @@
         (estado.indice + direccion + estado.total) % estado.total;
 
       actualizarSlider(nombre);
+
+      if (reiniciarAutomatico) {
+        reiniciarSliderAutomatico(nombre);
+      }
     }
 
     inicializarSliders();
+
+    document.addEventListener("visibilitychange", function() {
+      Object.keys(estadoSliders).forEach(function(nombre) {
+        if (document.hidden) {
+          pausarSliderAutomatico(nombre);
+        } else {
+          iniciarSliderAutomatico(nombre);
+        }
+      });
+    });
 
     document.addEventListener("keydown", function(evento) {
       if (evento.key !== "Escape") {
